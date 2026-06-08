@@ -31,6 +31,9 @@ int main() {
     return 1;
   }
 
+  run("ip addr replace 10.8.0.1 peer 10.8.0.2 dev tun1");
+  run("ip link set tun1 up");
+  run("sysctl -w net.ipv4.ip_forward=1");
   run("iptables -t nat -A POSTROUTING -s 10.8.0.2/32 -o wlo1 -j MASQUERADE");
   run("iptables -A FORWARD -i tun1 -o wlo1 -j ACCEPT");
   run("iptables -A FORWARD -i wlo1 -o tun1 -m conntrack --ctstate "
