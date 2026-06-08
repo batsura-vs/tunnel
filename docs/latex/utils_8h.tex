@@ -1,0 +1,45 @@
+\doxysection{shared/\+utils.h File Reference}
+\hypertarget{utils_8h}{}\label{utils_8h}\index{shared/utils.h@{shared/utils.h}}
+
+
+Вспомогательные функции проекта.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{utils_8h_af5dc99d09408bba33e0adc0e7550181b}{run}} (const char \texorpdfstring{$\ast$}{*}cmd)
+\begin{DoxyCompactList}\small\item\em Выполняет команду в системной оболочке. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Вспомогательные функции проекта. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{utils_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{utils_8h_af5dc99d09408bba33e0adc0e7550181b}\index{utils.h@{utils.h}!run@{run}}
+\index{run@{run}!utils.h@{utils.h}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{utils_8h_af5dc99d09408bba33e0adc0e7550181b} 
+int run (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{cmd}{}\end{DoxyParamCaption})}
+
+
+
+Выполняет команду в системной оболочке. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cmd} & Команда в виде строки с нулевым символом в конце. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Код завершения команды, возвращенный системной оболочкой. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \doxylink{classIOException}{IOException}} & Если команда завершается с ненулевым кодом. \\
+\hline
+\end{DoxyExceptions}

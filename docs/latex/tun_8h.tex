@@ -1,0 +1,40 @@
+\doxysection{shared/\+tun.h File Reference}
+\hypertarget{tun_8h}{}\label{tun_8h}\index{shared/tun.h@{shared/tun.h}}
+
+
+Функции для работы с Linux TUN-\/интерфейсом.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{tun_8h_acb9818c86626590a136db068e1504015}{tun\+\_\+alloc}} (char \texorpdfstring{$\ast$}{*}dev)
+\begin{DoxyCompactList}\small\item\em Выделяет сетевой TUN-\/интерфейс в Linux. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Функции для работы с Linux TUN-\/интерфейсом. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{tun_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{tun_8h_acb9818c86626590a136db068e1504015}\index{tun.h@{tun.h}!tun\_alloc@{tun\_alloc}}
+\index{tun\_alloc@{tun\_alloc}!tun.h@{tun.h}}
+\doxysubsubsection{\texorpdfstring{tun\_alloc()}{tun\_alloc()}}
+{\footnotesize\ttfamily \label{tun_8h_acb9818c86626590a136db068e1504015} 
+int tun\+\_\+alloc (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{dev}{}\end{DoxyParamCaption})}
+
+
+
+Выделяет сетевой TUN-\/интерфейс в Linux. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dev} & Буфер с именем интерфейса. Если в нем указано имя, запрашивается именно оно. При успешном выполнении в буфер записывается фактическое имя интерфейса. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Файловый дескриптор выделенного TUN-\/интерфейса или отрицательное значение при ошибке. 
+\end{DoxyReturn}

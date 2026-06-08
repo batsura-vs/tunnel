@@ -1,0 +1,23 @@
+\doxysection{io.\+h}
+\hypertarget{io_8h_source}{}\label{io_8h_source}\index{shared/io.h@{shared/io.h}}
+\doxymbox{\hyperlink{io_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <boost/asio.hpp>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{io_8h_a8a166e8fb5575f48c1bab8d6ee70d733}{bind\_o}}(boost::asio::ip::tcp::socket\ \&socket,}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ boost::asio::posix::stream\_descriptor\ \&tun\_stream);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00027\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{io_8h_a4b46fcc08aa4ef79101cc5245b01bf4d}{bind\_i}}(boost::asio::ip::tcp::socket\ \&socket,}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ boost::asio::posix::stream\_descriptor\ \&tun\_stream);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classIOException_adebe91abf8c2016c7c6f83eef943a87a}{IOException}}\ :\ \textcolor{keyword}{public}\ std::runtime\_error\ \{}
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00039\ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{classIOException_adebe91abf8c2016c7c6f83eef943a87a}{IOException}}(\textcolor{keyword}{const}\ std::string\ \&message)\ :\ std::runtime\_error(message)\ \{\};}
+\DoxyCodeLine{00040\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,76 @@
+\doxysection{shared/\+io.h File Reference}
+\hypertarget{io_8h}{}\label{io_8h}\index{shared/io.h@{shared/io.h}}
+
+
+Функции для обмена пакетами между TCP-\/сокетом и TUN-\/интерфейсом.  
+
+
+{\ttfamily \+\#include $<$boost/\+asio.\+hpp$>$}\newline
+{\ttfamily \+\#include $<$stdexcept$>$}\newline
+{\ttfamily \+\#include $<$string$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classIOException}{IOException}}
+\begin{DoxyCompactList}\small\item\em Тип исключения для ошибок ввода-\/вывода в туннеле. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{io_8h_a8a166e8fb5575f48c1bab8d6ee70d733}{bind\+\_\+o}} (boost::\+asio::\+ip::\+tcp::\+socket \&socket, boost::\+asio::\+posix::\+stream\+\_\+descriptor \&tun\+\_\+stream)
+\begin{DoxyCompactList}\small\item\em Запускает асинхронную передачу пакетов из TUN-\/интерфейса в TCP-\/сокет. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{io_8h_a4b46fcc08aa4ef79101cc5245b01bf4d}{bind\+\_\+i}} (boost::\+asio::\+ip::\+tcp::\+socket \&socket, boost::\+asio::\+posix::\+stream\+\_\+descriptor \&tun\+\_\+stream)
+\begin{DoxyCompactList}\small\item\em Запускает асинхронную передачу пакетов из TCP-\/сокета в TUN-\/интерфейс. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Функции для обмена пакетами между TCP-\/сокетом и TUN-\/интерфейсом. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{io_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{io_8h_a4b46fcc08aa4ef79101cc5245b01bf4d}\index{io.h@{io.h}!bind\_i@{bind\_i}}
+\index{bind\_i@{bind\_i}!io.h@{io.h}}
+\doxysubsubsection{\texorpdfstring{bind\_i()}{bind\_i()}}
+{\footnotesize\ttfamily \label{io_8h_a4b46fcc08aa4ef79101cc5245b01bf4d} 
+void bind\+\_\+i (\begin{DoxyParamCaption}\item[{boost::\+asio::\+ip::\+tcp::\+socket \&}]{socket}{, }\item[{boost::\+asio::\+posix::\+stream\+\_\+descriptor \&}]{tun\+\_\+stream}{}\end{DoxyParamCaption})}
+
+
+
+Запускает асинхронную передачу пакетов из TCP-\/сокета в TUN-\/интерфейс. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em socket} & TCP-\/сокет, из которого принимаются данные пакетов. \\
+\hline
+{\em tun\+\_\+stream} & Потоковый дескриптор, связанный с TUN-\/интерфейсом. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \doxylink{classIOException}{IOException}} & Если чтение из сокета, проверка размера пакета или запись в TUN завершается ошибкой. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{io_8h_a8a166e8fb5575f48c1bab8d6ee70d733}\index{io.h@{io.h}!bind\_o@{bind\_o}}
+\index{bind\_o@{bind\_o}!io.h@{io.h}}
+\doxysubsubsection{\texorpdfstring{bind\_o()}{bind\_o()}}
+{\footnotesize\ttfamily \label{io_8h_a8a166e8fb5575f48c1bab8d6ee70d733} 
+void bind\+\_\+o (\begin{DoxyParamCaption}\item[{boost::\+asio::\+ip::\+tcp::\+socket \&}]{socket}{, }\item[{boost::\+asio::\+posix::\+stream\+\_\+descriptor \&}]{tun\+\_\+stream}{}\end{DoxyParamCaption})}
+
+
+
+Запускает асинхронную передачу пакетов из TUN-\/интерфейса в TCP-\/сокет. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em socket} & TCP-\/сокет, в который отправляются данные пакетов. \\
+\hline
+{\em tun\+\_\+stream} & Потоковый дескриптор, связанный с TUN-\/интерфейсом. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \doxylink{classIOException}{IOException}} & Если чтение из TUN или запись в сокет завершается ошибкой. \\
+\hline
+\end{DoxyExceptions}
