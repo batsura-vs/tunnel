@@ -58,8 +58,7 @@ void bind_o(boost::asio::ip::tcp::socket &socket,
        &tun_stream](boost::system::error_code error_code,
                     std::size_t outgoing_bytes_size) {
         if (error_code) {
-          std::cerr << "tun read failed: " << error_code.message() << '\n';
-          return;
+          throw IOException("tun read failed: " + error_code.message());
         }
         outgoing_packet->payload_size = outgoing_bytes_size;
         outgoing_packet->header = to_array(outgoing_bytes_size);
@@ -72,9 +71,8 @@ void bind_o(boost::asio::ip::tcp::socket &socket,
             [outgoing_packet, &socket, &tun_stream](auto error_code,
                                                     auto written) {
               if (error_code) {
-                std::cerr << "socket write failed: " << error_code.message()
-                          << '\n';
-                return;
+                throw IOException("socket write failed: " +
+                                  error_code.message());
               }
               bind_o(socket, tun_stream);
             });
@@ -89,15 +87,13 @@ void bind_i(boost::asio::ip::tcp::socket &socket,
        &socket](boost::system::error_code error_code,
                 std::size_t incoming_bytes_size) {
         if (error_code) {
-          std::cerr << "socket header read failed: " << error_code.message()
-                    << '\n';
-          return;
+          throw IOException("socket header read failed: " +
+                            error_code.message());
         }
         incoming_packet->payload_size = from_array(incoming_packet->header);
         if (incoming_packet->payload_size > Constants::buffer_size) {
-          std::cerr << "packet is too large: " << incoming_packet->payload_size
-                    << '\n';
-          return;
+          throw IOException("packet is too large: " +
+                            std::to_string(incoming_packet->payload_size));
         }
         std::cout << "Receiving: " << incoming_packet->payload_size
                   << std::endl;
@@ -109,9 +105,8 @@ void bind_i(boost::asio::ip::tcp::socket &socket,
              &socket](boost::system::error_code error_code,
                       std::size_t incoming_bytes_size) {
               if (error_code) {
-                std::cerr << "socket payload read failed: "
-                          << error_code.message() << '\n';
-                return;
+                throw IOException("socket payload read failed: " +
+                                  error_code.message());
               }
               boost::asio::async_write(
                   tun_stream,
@@ -120,9 +115,8 @@ void bind_i(boost::asio::ip::tcp::socket &socket,
                   [incoming_packet, &socket, &tun_stream](auto error_code,
                                                           auto written) {
                     if (error_code) {
-                      std::cerr << "tun write failed: "
-                                << error_code.message() << '\n';
-                      return;
+                      throw IOException("tun write failed: " +
+                                        error_code.message());
                     }
                     bind_i(socket, tun_stream);
                   });

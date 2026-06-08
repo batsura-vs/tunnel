@@ -1,11 +1,12 @@
+#include "io.h"
+
 #include <cstdlib>
-#include <iostream>
+#include <string>
 
 int run(const char *cmd) {
   int rc = system(cmd);
   if (rc != 0) {
-    std::cerr << "failed: " << cmd << "\n";
+    throw IOException("failed: " + std::string(cmd));
   }
   return rc;
 }
-

@@ -15,6 +15,13 @@
 #include <string>
 #include <unistd.h>
 
+std::string next_arg(int argc, char *argv[], int &i, const std::string &arg) {
+  if (i + 1 >= argc) {
+    throw IOException("Missing value for " + arg);
+  }
+  return argv[++i];
+}
+
 struct ClientParams {
   std::string device{"tun2"};
   std::string ip_network{"10.0.0.2/24"};
@@ -30,51 +37,50 @@ private:
     for (int i{1}; i < argc; i++) {
       std::string arg{argv[i]};
       if (arg == "--tun-name") {
-        device = argv[++i];
+        device = next_arg(argc, argv, i, arg);
       } else if (arg == "--net") {
-        ip_network = argv[++i];
+        ip_network = next_arg(argc, argv, i, arg);
       } else if (arg == "--interface") {
-        interface = argv[++i];
+        interface = next_arg(argc, argv, i, arg);
       } else if (arg == "--gateway") {
-        gateway = argv[++i];
+        gateway = next_arg(argc, argv, i, arg);
       } else if (arg == "--server") {
-        server_ip = argv[++i];
+        server_ip = next_arg(argc, argv, i, arg);
       } else if (arg == "--port") {
-        port = std::stoi(argv[++i]);
+        port = std::stoi(next_arg(argc, argv, i, arg));
       } else {
-        std::cerr << "Unknown arg: " << arg << std::endl;
+        throw IOException("Unknown arg: " + arg);
       }
     }
   }
 };
 
 int main(int argc, char *argv[]) {
-  ClientParams config{argc, argv};
-
-  std::string device = config.device;
-  int tun_fd = tun_alloc(device.data());
-  if (tun_fd < 0) {
-    std::cerr << "tun_alloc failed\n";
-    return 1;
-  }
-  std::cout << "tun allocated" << std::endl;
-
-  run(("ip addr replace " + config.ip_network + " dev " + config.device)
-          .c_str());
-  if (config.gateway.empty()) {
-    run(("ip route replace " + config.server_ip + "/32 dev " +
-         config.interface)
-            .c_str());
-  } else {
-    run(("ip route replace " + config.server_ip + "/32 via " +
-         config.gateway + " dev " + config.interface)
-            .c_str());
-  }
-  run(("ip link set " + config.device + " up").c_str());
-  run(("ip route replace 0.0.0.0/1 dev " + config.device).c_str());
-  run(("ip route replace 128.0.0.0/1 dev " + config.device).c_str());
-
   try {
+    ClientParams config{argc, argv};
+
+    std::string device = config.device;
+    int tun_fd = tun_alloc(device.data());
+    if (tun_fd < 0) {
+      throw IOException("tun_alloc failed");
+    }
+    std::cout << "tun allocated" << std::endl;
+
+    run(("ip addr replace " + config.ip_network + " dev " + config.device)
+            .c_str());
+    if (config.gateway.empty()) {
+      run(("ip route replace " + config.server_ip + "/32 dev " +
+           config.interface)
+              .c_str());
+    } else {
+      run(("ip route replace " + config.server_ip + "/32 via " +
+           config.gateway + " dev " + config.interface)
+              .c_str());
+    }
+    run(("ip link set " + config.device + " up").c_str());
+    run(("ip route replace 0.0.0.0/1 dev " + config.device).c_str());
+    run(("ip route replace 128.0.0.0/1 dev " + config.device).c_str());
+
     boost::asio::io_context io_context;
 
     using boost::asio::ip::tcp;

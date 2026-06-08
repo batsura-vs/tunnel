@@ -17,6 +17,13 @@
 #include <sys/types.h>
 #include <unistd.h>
 
+std::string next_arg(int argc, char *argv[], int &i, const std::string &arg) {
+  if (i + 1 >= argc) {
+    throw IOException("Missing value for " + arg);
+  }
+  return argv[++i];
+}
+
 struct ServerParams {
   std::string device{"tun1"};
   std::string ip_network{"10.0.0.1/24"};
@@ -31,50 +38,49 @@ private:
     for (int i{1}; i < argc; i++) {
       std::string arg{argv[i]};
       if (arg == "--tun-name") {
-        device = argv[++i];
+        device = next_arg(argc, argv, i, arg);
       } else if (arg == "--net") {
-        ip_network = argv[++i];
+        ip_network = next_arg(argc, argv, i, arg);
       } else if (arg == "--interface") {
-        interface = argv[++i];
+        interface = next_arg(argc, argv, i, arg);
       } else if (arg == "--listen-on") {
-        listen_on = argv[++i];
+        listen_on = next_arg(argc, argv, i, arg);
       } else if (arg == "--port") {
-        port = std::stoi(argv[++i]);
+        port = std::stoi(next_arg(argc, argv, i, arg));
       } else {
-        std::cerr << "Uknown arg: " << arg << std::endl;
+        throw IOException("Unknown arg: " + arg);
       }
     }
   }
 };
 
 int main(int argc, char *argv[]) {
-  ServerParams config{argc, argv};
-  std::string device = config.device;
-  int tun_fd = tun_alloc(device.data());
-
-  if (tun_fd < 0) {
-    std::cerr << "tun_alloc failed\n";
-    return 1;
-  }
-
-  run(("ip addr replace " + config.ip_network + " dev " + config.device)
-          .c_str());
-
-  run(("ip link set " + config.device + " up").c_str());
-
-  run(("iptables -t nat -A POSTROUTING -s " + config.ip_network + " -o " +
-       config.interface + " -j MASQUERADE")
-          .c_str());
-
-  run(("iptables -A FORWARD -i " + config.device + " -o " + config.interface +
-       " -j ACCEPT")
-          .c_str());
-
-  run(("iptables -A FORWARD -i " + config.interface + " -o " + config.device +
-       " -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT")
-          .c_str());
-
   try {
+    ServerParams config{argc, argv};
+    std::string device = config.device;
+    int tun_fd = tun_alloc(device.data());
+
+    if (tun_fd < 0) {
+      throw IOException("tun_alloc failed");
+    }
+
+    run(("ip addr replace " + config.ip_network + " dev " + config.device)
+            .c_str());
+
+    run(("ip link set " + config.device + " up").c_str());
+
+    run(("iptables -t nat -A POSTROUTING -s " + config.ip_network + " -o " +
+         config.interface + " -j MASQUERADE")
+            .c_str());
+
+    run(("iptables -A FORWARD -i " + config.device + " -o " + config.interface +
+         " -j ACCEPT")
+            .c_str());
+
+    run(("iptables -A FORWARD -i " + config.interface + " -o " + config.device +
+         " -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT")
+            .c_str());
+
     boost::asio::io_context io_context;
 
     boost::asio::ip::tcp::endpoint endpoint(
@@ -90,7 +96,7 @@ int main(int argc, char *argv[]) {
     bind_o(socket, tun_stream);
     io_context.run();
   } catch (const std::exception &e) {
-    std::cerr << "client error: " << e.what() << '\n';
+    std::cerr << "server error: " << e.what() << '\n';
     return 1;
   }
   return 0;
