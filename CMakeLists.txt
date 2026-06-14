@@ -20,3 +20,12 @@ add_executable(server src/server/main.cpp)
 
 target_link_libraries(client PRIVATE Boost::headers tun io utils)
 target_link_libraries(server PRIVATE Boost::headers tun io utils)
+
+
+
+enable_testing()
+
+add_executable(unit_tests tests/test_utils.cpp)
+target_link_libraries(unit_tests PRIVATE Boost::headers io utils)
+
+add_test(NAME unit_tests COMMAND unit_tests)

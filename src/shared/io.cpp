@@ -21,7 +21,7 @@ namespace Constants {
 inline constexpr uint32_t buffer_size = 2048;
 }
 
-std::array<unsigned char, 4> to_array(uint32_t number) {
+std::array<unsigned char, 4> header_to_array(uint32_t number) {
   std::array<unsigned char, 4> header = {0, 0, 0, 0};
   header[0] = number >> 24;
   header[1] = number >> 16;
@@ -29,7 +29,7 @@ std::array<unsigned char, 4> to_array(uint32_t number) {
   header[3] = number;
   return header;
 }
-uint32_t from_array(std::array<unsigned char, 4> buf) {
+std::uint32_t header_from_array(std::array<unsigned char, 4> buf) {
   return (static_cast<std::uint32_t>(buf[0]) << 24) |
          (static_cast<std::uint32_t>(buf[1]) << 16) |
          (static_cast<std::uint32_t>(buf[2]) << 8) |
@@ -45,7 +45,7 @@ struct Packet {
   Packet(std::array<char, Constants::buffer_size> payload,
          std::size_t payload_size)
       : payload{payload}, payload_size{payload_size} {
-    header = to_array(payload_size);
+    header = header_to_array(payload_size);
   }
 };
 
@@ -61,7 +61,7 @@ void bind_o(boost::asio::ip::tcp::socket &socket,
           throw IOException("tun read failed: " + error_code.message());
         }
         outgoing_packet->payload_size = outgoing_bytes_size;
-        outgoing_packet->header = to_array(outgoing_bytes_size);
+        outgoing_packet->header = header_to_array(outgoing_bytes_size);
         std::cout << "Sending: " << outgoing_packet->payload_size << std::endl;
         boost::asio::async_write(
             socket,
@@ -90,7 +90,7 @@ void bind_i(boost::asio::ip::tcp::socket &socket,
           throw IOException("socket header read failed: " +
                             error_code.message());
         }
-        incoming_packet->payload_size = from_array(incoming_packet->header);
+        incoming_packet->payload_size = header_from_array(incoming_packet->header);
         if (incoming_packet->payload_size > Constants::buffer_size) {
           throw IOException("packet is too large: " +
                             std::to_string(incoming_packet->payload_size));

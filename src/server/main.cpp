@@ -17,43 +17,6 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-std::string next_arg(int argc, char *argv[], int &i, const std::string &arg) {
-  if (i + 1 >= argc) {
-    throw IOException("Missing value for " + arg);
-  }
-  return argv[++i];
-}
-
-struct ServerParams {
-  std::string device{"tun1"};
-  std::string ip_network{"10.0.0.1/24"};
-  std::string interface{"wlo1"};
-  std::string listen_on{"0.0.0.0"};
-  int port{5555};
-
-  ServerParams(int argc, char *argv[]) { from_args(argc, argv); }
-
-private:
-  void from_args(int argc, char *argv[]) {
-    for (int i{1}; i < argc; i++) {
-      std::string arg{argv[i]};
-      if (arg == "--tun-name") {
-        device = next_arg(argc, argv, i, arg);
-      } else if (arg == "--net") {
-        ip_network = next_arg(argc, argv, i, arg);
-      } else if (arg == "--interface") {
-        interface = next_arg(argc, argv, i, arg);
-      } else if (arg == "--listen-on") {
-        listen_on = next_arg(argc, argv, i, arg);
-      } else if (arg == "--port") {
-        port = std::stoi(next_arg(argc, argv, i, arg));
-      } else {
-        throw IOException("Unknown arg: " + arg);
-      }
-    }
-  }
-};
-
 int main(int argc, char *argv[]) {
   try {
     ServerParams config{argc, argv};

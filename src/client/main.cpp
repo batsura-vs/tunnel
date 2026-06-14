@@ -15,45 +15,6 @@
 #include <string>
 #include <unistd.h>
 
-std::string next_arg(int argc, char *argv[], int &i, const std::string &arg) {
-  if (i + 1 >= argc) {
-    throw IOException("Missing value for " + arg);
-  }
-  return argv[++i];
-}
-
-struct ClientParams {
-  std::string device{"tun2"};
-  std::string ip_network{"10.0.0.2/24"};
-  std::string interface{"wlo1"};
-  std::string gateway{};
-  std::string server_ip{"127.0.0.1"};
-  int port{5555};
-
-  ClientParams(int argc, char *argv[]) { from_args(argc, argv); }
-
-private:
-  void from_args(int argc, char *argv[]) {
-    for (int i{1}; i < argc; i++) {
-      std::string arg{argv[i]};
-      if (arg == "--tun-name") {
-        device = next_arg(argc, argv, i, arg);
-      } else if (arg == "--net") {
-        ip_network = next_arg(argc, argv, i, arg);
-      } else if (arg == "--interface") {
-        interface = next_arg(argc, argv, i, arg);
-      } else if (arg == "--gateway") {
-        gateway = next_arg(argc, argv, i, arg);
-      } else if (arg == "--server") {
-        server_ip = next_arg(argc, argv, i, arg);
-      } else if (arg == "--port") {
-        port = std::stoi(next_arg(argc, argv, i, arg));
-      } else {
-        throw IOException("Unknown arg: " + arg);
-      }
-    }
-  }
-};
 
 int main(int argc, char *argv[]) {
   try {

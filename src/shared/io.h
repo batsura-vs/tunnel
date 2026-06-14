@@ -6,8 +6,24 @@
  */
 
 #include <boost/asio.hpp>
+#include <array>
+#include <cstdint>
 #include <stdexcept>
 #include <string>
+
+/**
+ * @brief Кодирует 32-битное число в сетевой порядок байтов.
+ * @param number Число, которое нужно записать в заголовок пакета.
+ * @return Массив из четырех байтов в порядке от старшего к младшему.
+ */
+std::array<unsigned char, 4> header_to_array(std::uint32_t number);
+
+/**
+ * @brief Декодирует 32-битное число из сетевого порядка байтов.
+ * @param buf Массив из четырех байтов в порядке от старшего к младшему.
+ * @return Число, восстановленное из заголовка пакета.
+ */
+std::uint32_t header_from_array(std::array<unsigned char, 4> buf);
 
 /**
  * @brief Запускает асинхронную передачу пакетов из TUN-интерфейса в TCP-сокет.
