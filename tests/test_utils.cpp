@@ -1,6 +1,7 @@
-#include <boost/test/unit_test_suite.hpp>
 #define BOOST_TEST_MODULE tunnel_tests
+
 #include <boost/test/included/unit_test.hpp>
+#include <boost/test/unit_test_suite.hpp>
 
 #include "io.h"
 #include "utils.h"
@@ -12,9 +13,9 @@ BOOST_AUTO_TEST_CASE(parse_port_accepts_valid_values) {
 }
 
 BOOST_AUTO_TEST_CASE(parse_port_rejects_invalid_values) {
-  BOOST_CHECK_THROW(parse_port("0"), IOException);
-  BOOST_CHECK_THROW(parse_port("65536"), IOException);
-  BOOST_CHECK_THROW(parse_port("abc"), IOException);
+  BOOST_CHECK_THROW(parse_port("0"), ParseException);
+  BOOST_CHECK_THROW(parse_port("65536"), ParseException);
+  BOOST_CHECK_THROW(parse_port("abc"), ParseException);
 }
 
 BOOST_AUTO_TEST_CASE(packet_size_round_trip_works) {

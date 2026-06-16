@@ -1,3 +1,4 @@
+#include "utils.h"
 #include "io.h"
 
 #include <cstdlib>
@@ -14,7 +15,7 @@ int run(const char *cmd) {
 std::string next_arg(int argc, char *argv[], int &index,
                      const std::string &arg) {
   if (index + 1 >= argc) {
-    throw IOException("Missing value for " + arg);
+    throw ParseException("Missing value for " + arg);
   }
   return argv[++index];
 }
@@ -25,10 +26,10 @@ int parse_port(const std::string &value) {
   try {
     port = std::stoi(value, &parsed_chars);
   } catch (const std::exception &) {
-    throw IOException("Invalid port: " + value);
+    throw ParseException("Invalid port: " + value);
   }
   if (parsed_chars != value.size() || port < 1 || port > 65535) {
-    throw IOException("Invalid port: " + value);
+    throw ParseException("Invalid port: " + value);
   }
   return port;
 }
