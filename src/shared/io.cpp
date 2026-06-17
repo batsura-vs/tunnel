@@ -8,12 +8,17 @@
 #include <boost/asio/posix/stream_descriptor.hpp>
 #include <boost/asio/read.hpp>
 #include <boost/asio/write.hpp>
+#include <boost/exception/to_string.hpp>
 #include <boost/system/detail/error_code.hpp>
 #include <cstddef>
 #include <cstdint>
+#include <cstring>
 #include <fcntl.h>
 #include <iostream>
 #include <memory>
+#include <netinet/in.h>
+#include <ostream>
+#include <string>
 #include <sys/types.h>
 #include <unistd.h>
 
@@ -38,16 +43,47 @@ std::uint32_t header_from_array(std::array<unsigned char, 4> buf) {
 
 struct Packet {
   std::array<unsigned char, 4> header{};
-  std::array<char, Constants::buffer_size> payload{};
+  std::array<unsigned char, Constants::buffer_size> payload{};
   std::size_t payload_size{};
 
   Packet() = default;
-  Packet(std::array<char, Constants::buffer_size> payload,
+  Packet(std::array<unsigned char, Constants::buffer_size> payload,
          std::size_t payload_size)
       : payload{payload}, payload_size{payload_size} {
     header = header_to_array(payload_size);
   }
 };
+
+std::string parse_ip_v4(unsigned char *start) {
+  return std::to_string(start[0]) + '.' + std::to_string(start[1]) + '.' +
+         std::to_string(start[2]) + '.' + std::to_string(start[3]);
+}
+
+std::string parse_ip_v6(unsigned char *start) {
+  char buf[INET6_ADDRSTRLEN];
+
+  if (inet_ntop(AF_INET6, start, buf, sizeof(buf)) == nullptr) {
+    return "<invalid ipv6>";
+  }
+
+  return std::string(buf);
+}
+
+void log_packet(std::shared_ptr<Packet> packet) {
+  std::uint32_t ip_version = packet->payload[0] >> 4;
+  std::cout << "Packet ip:" << ip_version << "; ";
+  std::string src_ip;
+  std::string dst_ip;
+  if (ip_version == 4) {
+    src_ip = parse_ip_v4(&packet->payload[12]);
+    dst_ip = parse_ip_v4(&packet->payload[16]);
+  } else {
+    src_ip = parse_ip_v6(&packet->payload[8]);
+    dst_ip = parse_ip_v6(&packet->payload[24]);
+  }
+  std::cout << "route " << src_ip << " -> " << dst_ip << "; ";
+  std::cout << std::endl;
+}
 
 void bind_o(boost::asio::ip::tcp::socket &socket,
             boost::asio::posix::stream_descriptor &tun_stream) {
@@ -62,7 +98,7 @@ void bind_o(boost::asio::ip::tcp::socket &socket,
         }
         outgoing_packet->payload_size = outgoing_bytes_size;
         outgoing_packet->header = header_to_array(outgoing_bytes_size);
-        std::cout << "Sending: " << outgoing_packet->payload_size << std::endl;
+        log_packet(outgoing_packet);
         boost::asio::async_write(
             socket,
             std::array{boost::asio::buffer(outgoing_packet->header),
@@ -90,13 +126,12 @@ void bind_i(boost::asio::ip::tcp::socket &socket,
           throw IOException("socket header read failed: " +
                             error_code.message());
         }
-        incoming_packet->payload_size = header_from_array(incoming_packet->header);
+        incoming_packet->payload_size =
+            header_from_array(incoming_packet->header);
         if (incoming_packet->payload_size > Constants::buffer_size) {
           throw IOException("packet is too large: " +
                             std::to_string(incoming_packet->payload_size));
         }
-        std::cout << "Receiving: " << incoming_packet->payload_size
-                  << std::endl;
         boost::asio::async_read(
             socket,
             boost::asio::buffer(incoming_packet->payload,
@@ -108,6 +143,7 @@ void bind_i(boost::asio::ip::tcp::socket &socket,
                 throw IOException("socket payload read failed: " +
                                   error_code.message());
               }
+              log_packet(incoming_packet);
               boost::asio::async_write(
                   tun_stream,
                   boost::asio::buffer(incoming_packet->payload,
