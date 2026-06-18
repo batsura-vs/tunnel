@@ -1,25 +1,100 @@
 \doxysection{Packet Struct Reference}
 \hypertarget{structPacket}{}\label{structPacket}\index{Packet@{Packet}}
+
+
+Сетевой пакет с заголовком размера.  
+
+
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{structPacket_a92383af7298a8d473e385d4e1c77e247}\label{structPacket_a92383af7298a8d473e385d4e1c77e247} 
-{\bfseries Packet} (std::\+array$<$ char, Constants::\+buffer\+\_\+size $>$ payload, std::\+size\+\_\+t payload\+\_\+size)
-\end{DoxyCompactItemize}
+\doxymbox{\hyperlink{structPacket_ab1ec7232eac75450a4392bb9c10921fb}{Packet}} ()=default
+\begin{DoxyCompactList}\small\item\em Создаёт пустой пакет. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{structPacket_a6cb56d0563fd4b3449057bf3bebb23c4}{Packet}} (std::\+array$<$ unsigned char, \doxymbox{\hyperlink{namespaceConstants_ab7d03273bcb68469bca467c64fecf103}{Constants::\+buffer\+\_\+size}} $>$ \doxymbox{\hyperlink{structPacket_a913538aae43664a3c7aa667ca917a4d8}{payload}}, std::\+size\+\_\+t \doxymbox{\hyperlink{structPacket_a4fbdf75baef6f022fd0d4bfdab0c3399}{payload\+\_\+size}})
+\begin{DoxyCompactList}\small\item\em Создаёт пакет из заданной полезной нагрузки и формирует заголовок размера. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{structPacket_ac8101a5e2272312ace9461056269d16e}\label{structPacket_ac8101a5e2272312ace9461056269d16e} 
-std::\+array$<$ unsigned char, 4 $>$ {\bfseries header} \{\}
-\item 
-\Hypertarget{structPacket_aa8122e87c5437c87e2364ed6cb9bab2d}\label{structPacket_aa8122e87c5437c87e2364ed6cb9bab2d} 
-std::\+array$<$ char, Constants::\+buffer\+\_\+size $>$ {\bfseries payload} \{\}
-\item 
-\Hypertarget{structPacket_a4fbdf75baef6f022fd0d4bfdab0c3399}\label{structPacket_a4fbdf75baef6f022fd0d4bfdab0c3399} 
-std::\+size\+\_\+t {\bfseries payload\+\_\+size} \{\}
-\end{DoxyCompactItemize}
+std::\+array$<$ unsigned char, 4 $>$ \doxymbox{\hyperlink{structPacket_ac8101a5e2272312ace9461056269d16e}{header}} \{\}
+\begin{DoxyCompactList}\small\item\em Четырёхбайтовый заголовок с размером payload в сетевом порядке байтов. \end{DoxyCompactList}\item 
+std::\+array$<$ unsigned char, \doxymbox{\hyperlink{namespaceConstants_ab7d03273bcb68469bca467c64fecf103}{Constants::\+buffer\+\_\+size}} $>$ \doxymbox{\hyperlink{structPacket_a913538aae43664a3c7aa667ca917a4d8}{payload}} \{\}
+\begin{DoxyCompactList}\small\item\em Буфер с полезной нагрузкой пакета (IP-\/пакет из TUN). \end{DoxyCompactList}\item 
+std::\+size\+\_\+t \doxymbox{\hyperlink{structPacket_a4fbdf75baef6f022fd0d4bfdab0c3399}{payload\+\_\+size}} \{\}
+\begin{DoxyCompactList}\small\item\em Фактический размер полезной нагрузки в байтах. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Сетевой пакет с заголовком размера. 
+
+Используется при обмене данными между TUN-\/интерфейсом и TCP-\/сокетом. 
+
+\label{doc-constructors}
+\Hypertarget{structPacket_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structPacket_ab1ec7232eac75450a4392bb9c10921fb}\index{Packet@{Packet}!Packet@{Packet}}
+\index{Packet@{Packet}!Packet@{Packet}}
+\doxysubsubsection{\texorpdfstring{Packet()}{Packet()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{structPacket_ab1ec7232eac75450a4392bb9c10921fb} 
+Packet::\+\+Packet (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Создаёт пустой пакет. 
+
+\Hypertarget{structPacket_a6cb56d0563fd4b3449057bf3bebb23c4}\index{Packet@{Packet}!Packet@{Packet}}
+\index{Packet@{Packet}!Packet@{Packet}}
+\doxysubsubsection{\texorpdfstring{Packet()}{Packet()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{structPacket_a6cb56d0563fd4b3449057bf3bebb23c4} 
+Packet::\+\+Packet (\begin{DoxyParamCaption}\item[{std::\+array$<$ unsigned char, \doxymbox{\hyperlink{namespaceConstants_ab7d03273bcb68469bca467c64fecf103}{Constants::\+buffer\+\_\+size}} $>$}]{payload}{, }\item[{std::\+size\+\_\+t}]{payload\+\_\+size}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Создаёт пакет из заданной полезной нагрузки и формирует заголовок размера. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \doxylink{structPacket_a913538aae43664a3c7aa667ca917a4d8}{payload}} & Буфер с полезной нагрузкой пакета. \\
+\hline
+{\em \doxylink{structPacket_a4fbdf75baef6f022fd0d4bfdab0c3399}{payload\+\_\+size}} & Размер полезной нагрузки в байтах. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-variable-members}
+\Hypertarget{structPacket_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structPacket_ac8101a5e2272312ace9461056269d16e}\index{Packet@{Packet}!header@{header}}
+\index{header@{header}!Packet@{Packet}}
+\doxysubsubsection{\texorpdfstring{header}{header}}
+{\footnotesize\ttfamily \label{structPacket_ac8101a5e2272312ace9461056269d16e} 
+std::\+array$<$unsigned char, 4$>$ Packet::\+header \{\}}
+
+
+
+Четырёхбайтовый заголовок с размером payload в сетевом порядке байтов. 
+
+\Hypertarget{structPacket_a913538aae43664a3c7aa667ca917a4d8}\index{Packet@{Packet}!payload@{payload}}
+\index{payload@{payload}!Packet@{Packet}}
+\doxysubsubsection{\texorpdfstring{payload}{payload}}
+{\footnotesize\ttfamily \label{structPacket_a913538aae43664a3c7aa667ca917a4d8} 
+std::\+array$<$unsigned char, \doxymbox{\hyperlink{namespaceConstants_ab7d03273bcb68469bca467c64fecf103}{Constants::\+buffer\+\_\+size}}$>$ Packet::\+payload \{\}}
+
+
+
+Буфер с полезной нагрузкой пакета (IP-\/пакет из TUN). 
+
+\Hypertarget{structPacket_a4fbdf75baef6f022fd0d4bfdab0c3399}\index{Packet@{Packet}!payload\_size@{payload\_size}}
+\index{payload\_size@{payload\_size}!Packet@{Packet}}
+\doxysubsubsection{\texorpdfstring{payload\_size}{payload\_size}}
+{\footnotesize\ttfamily \label{structPacket_a4fbdf75baef6f022fd0d4bfdab0c3399} 
+std::\+size\+\_\+t Packet::\+payload\+\_\+size \{\}}
+
+
+
+Фактический размер полезной нагрузки в байтах. 
+
 
 
 The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
 \item 
-src/\+shared/\+io.\+cpp\end{DoxyCompactItemize}
+src/\+shared/\+\doxymbox{\hyperlink{io_8cpp}{io.\+cpp}}\end{DoxyCompactItemize}

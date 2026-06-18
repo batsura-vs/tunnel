@@ -1,31 +1,133 @@
 \doxysection{Server\+Params Struct Reference}
 \hypertarget{structServerParams}{}\label{structServerParams}\index{ServerParams@{ServerParams}}
+
+
+Параметры запуска серверной части туннеля.  
+
+
+
+
+{\ttfamily \+\#include $<$utils.\+h$>$}
+
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{structServerParams_a40744f642671ff91dc2130b9847a1258}\label{structServerParams_a40744f642671ff91dc2130b9847a1258} 
-{\bfseries Server\+Params} (int argc, char \texorpdfstring{$\ast$}{*}argv\+[$\,$]\+)
-\end{DoxyCompactItemize}
+\doxymbox{\hyperlink{structServerParams_a40744f642671ff91dc2130b9847a1258}{Server\+Params}} (int argc, char \texorpdfstring{$\ast$}{*}argv\+[$\,$]\+)
+\begin{DoxyCompactList}\small\item\em Создает параметры сервера из аргументов командной строки. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{structServerParams_a6e52e2f5aca750984c0544340f101c58}\label{structServerParams_a6e52e2f5aca750984c0544340f101c58} 
-std::\+string {\bfseries device} \{"{}tun1"{}\}
-\item 
-\Hypertarget{structServerParams_a363f86d1dc343e53f6283dc5bb47c27e}\label{structServerParams_a363f86d1dc343e53f6283dc5bb47c27e} 
-std::\+string {\bfseries ip\+\_\+network} \{"{}10.\+0.\+0.\+1/\+24"{}\}
-\item 
-\Hypertarget{structServerParams_ac69256727a395eb5277e9cd6b3f776d4}\label{structServerParams_ac69256727a395eb5277e9cd6b3f776d4} 
-std::\+string {\bfseries interface} \{"{}wlo1"{}\}
-\item 
-\Hypertarget{structServerParams_a625766f043020aec31acc22cefc967db}\label{structServerParams_a625766f043020aec31acc22cefc967db} 
-std::\+string {\bfseries listen\+\_\+on} \{"{}0.\+0.\+0.\+0"{}\}
-\item 
-\Hypertarget{structServerParams_ab7588497c1f0862db097739b4dc95ac8}\label{structServerParams_ab7588497c1f0862db097739b4dc95ac8} 
-int {\bfseries port} \{5555\}
-\end{DoxyCompactItemize}
+std::\+string \doxymbox{\hyperlink{structServerParams_a6e52e2f5aca750984c0544340f101c58}{device}} \{"{}tun1"{}\}
+\begin{DoxyCompactList}\small\item\em Имя создаваемого TUN-\/интерфейса. \end{DoxyCompactList}\item 
+std::\+string \doxymbox{\hyperlink{structServerParams_a1331a5df2eb7f73f304e4116a13402f9}{tun\+\_\+device}} \{"{}/\+dev/\+net/\+tun"{}\}
+\begin{DoxyCompactList}\small\item\em Путь к Linux TUN-\/устройству. \end{DoxyCompactList}\item 
+std::\+string \doxymbox{\hyperlink{structServerParams_a363f86d1dc343e53f6283dc5bb47c27e}{ip\+\_\+network}} \{"{}10.\+0.\+0.\+1/\+24"{}\}
+\begin{DoxyCompactList}\small\item\em IP-\/адрес и маска сети, назначаемые TUN-\/интерфейсу. \end{DoxyCompactList}\item 
+std::\+string \doxymbox{\hyperlink{structServerParams_ac69256727a395eb5277e9cd6b3f776d4}{interface}} \{"{}wlo1"{}\}
+\begin{DoxyCompactList}\small\item\em Имя физического сетевого интерфейса для выхода в сеть. \end{DoxyCompactList}\item 
+std::\+string \doxymbox{\hyperlink{structServerParams_a625766f043020aec31acc22cefc967db}{listen\+\_\+on}} \{"{}0.\+0.\+0.\+0"{}\}
+\begin{DoxyCompactList}\small\item\em IP-\/адрес, на котором сервер принимает входящие подключения. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{structServerParams_ab7588497c1f0862db097739b4dc95ac8}{port}} \{5555\}
+\begin{DoxyCompactList}\small\item\em TCP-\/порт, на котором сервер принимает подключения. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Параметры запуска серверной части туннеля. 
+
+Хранит значения, необходимые серверу для создания TUN-\/интерфейса, настройки маршрутизации и запуска TCP-\/сервера. 
+
+\label{doc-constructors}
+\Hypertarget{structServerParams_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structServerParams_a40744f642671ff91dc2130b9847a1258}\index{ServerParams@{ServerParams}!ServerParams@{ServerParams}}
+\index{ServerParams@{ServerParams}!ServerParams@{ServerParams}}
+\doxysubsubsection{\texorpdfstring{ServerParams()}{ServerParams()}}
+{\footnotesize\ttfamily \label{structServerParams_a40744f642671ff91dc2130b9847a1258} 
+Server\+Params::\+\+Server\+Params (\begin{DoxyParamCaption}\item[{int}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{argv}{\+[$\,$]\+}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Создает параметры сервера из аргументов командной строки. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Количество аргументов командной строки. \\
+\hline
+{\em argv} & Массив аргументов командной строки. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \doxylink{classParseException}{Parse\+Exception}} & Если передан неизвестный аргумент, отсутствует значение аргумента или указан некорректный порт. \\
+\hline
+\end{DoxyExceptions}
+
+
+\label{doc-variable-members}
+\Hypertarget{structServerParams_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structServerParams_a6e52e2f5aca750984c0544340f101c58}\index{ServerParams@{ServerParams}!device@{device}}
+\index{device@{device}!ServerParams@{ServerParams}}
+\doxysubsubsection{\texorpdfstring{device}{device}}
+{\footnotesize\ttfamily \label{structServerParams_a6e52e2f5aca750984c0544340f101c58} 
+std::\+string Server\+Params::\+device \{"{}tun1"{}\}}
+
+
+
+Имя создаваемого TUN-\/интерфейса. 
+
+\Hypertarget{structServerParams_ac69256727a395eb5277e9cd6b3f776d4}\index{ServerParams@{ServerParams}!interface@{interface}}
+\index{interface@{interface}!ServerParams@{ServerParams}}
+\doxysubsubsection{\texorpdfstring{interface}{interface}}
+{\footnotesize\ttfamily \label{structServerParams_ac69256727a395eb5277e9cd6b3f776d4} 
+std::\+string Server\+Params::\+interface \{"{}wlo1"{}\}}
+
+
+
+Имя физического сетевого интерфейса для выхода в сеть. 
+
+\Hypertarget{structServerParams_a363f86d1dc343e53f6283dc5bb47c27e}\index{ServerParams@{ServerParams}!ip\_network@{ip\_network}}
+\index{ip\_network@{ip\_network}!ServerParams@{ServerParams}}
+\doxysubsubsection{\texorpdfstring{ip\_network}{ip\_network}}
+{\footnotesize\ttfamily \label{structServerParams_a363f86d1dc343e53f6283dc5bb47c27e} 
+std::\+string Server\+Params::\+ip\+\_\+network \{"{}10.\+0.\+0.\+1/\+24"{}\}}
+
+
+
+IP-\/адрес и маска сети, назначаемые TUN-\/интерфейсу. 
+
+\Hypertarget{structServerParams_a625766f043020aec31acc22cefc967db}\index{ServerParams@{ServerParams}!listen\_on@{listen\_on}}
+\index{listen\_on@{listen\_on}!ServerParams@{ServerParams}}
+\doxysubsubsection{\texorpdfstring{listen\_on}{listen\_on}}
+{\footnotesize\ttfamily \label{structServerParams_a625766f043020aec31acc22cefc967db} 
+std::\+string Server\+Params::\+listen\+\_\+on \{"{}0.\+0.\+0.\+0"{}\}}
+
+
+
+IP-\/адрес, на котором сервер принимает входящие подключения. 
+
+\Hypertarget{structServerParams_ab7588497c1f0862db097739b4dc95ac8}\index{ServerParams@{ServerParams}!port@{port}}
+\index{port@{port}!ServerParams@{ServerParams}}
+\doxysubsubsection{\texorpdfstring{port}{port}}
+{\footnotesize\ttfamily \label{structServerParams_ab7588497c1f0862db097739b4dc95ac8} 
+int Server\+Params::\+port \{5555\}}
+
+
+
+TCP-\/порт, на котором сервер принимает подключения. 
+
+\Hypertarget{structServerParams_a1331a5df2eb7f73f304e4116a13402f9}\index{ServerParams@{ServerParams}!tun\_device@{tun\_device}}
+\index{tun\_device@{tun\_device}!ServerParams@{ServerParams}}
+\doxysubsubsection{\texorpdfstring{tun\_device}{tun\_device}}
+{\footnotesize\ttfamily \label{structServerParams_a1331a5df2eb7f73f304e4116a13402f9} 
+std::\+string Server\+Params::\+tun\+\_\+device \{"{}/\+dev/\+net/\+tun"{}\}}
+
+
+
+Путь к Linux TUN-\/устройству. 
+
 
 
 The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
 \item 
-src/\+server/\+main.\+cpp\end{DoxyCompactItemize}
+src/\+shared/\+\doxymbox{\hyperlink{utils_8h}{utils.\+h}}\end{DoxyCompactItemize}

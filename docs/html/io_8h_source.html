@@ -94,32 +94,43 @@ $(function(){initNavTree('io_8h_source.html','',''); });
 <a href="io_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;boost/asio.hpp&gt;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keywordtype">void</span> <a class="code hl_function" href="io_8h.html#a8a166e8fb5575f48c1bab8d6ee70d733">bind_o</a>(boost::asio::ip::tcp::socket &amp;socket,</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>            boost::asio::posix::stream_descriptor &amp;tun_stream);</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;array&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;boost/asio.hpp&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="io_8h.html#a92851e84a62d0fe0684482298fad19c5">   19</a></span>std::array&lt;unsigned char, 4&gt; <a class="code hl_function" href="io_8h.html#a92851e84a62d0fe0684482298fad19c5">header_to_array</a>(std::uint32_t number);</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keywordtype">void</span> <a class="code hl_function" href="io_8h.html#a4b46fcc08aa4ef79101cc5245b01bf4d">bind_i</a>(boost::asio::ip::tcp::socket &amp;socket,</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>            boost::asio::posix::stream_descriptor &amp;tun_stream);</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span></div>
-<div class="foldopen" id="foldopen00033" data-start="{" data-end="};">
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classIOException.html">   33</a></span><span class="keyword">class </span><a class="code hl_function" href="classIOException.html#adebe91abf8c2016c7c6f83eef943a87a">IOException</a> : <span class="keyword">public</span> std::runtime_error {</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classIOException.html#adebe91abf8c2016c7c6f83eef943a87a">   39</a></span>  <span class="keyword">explicit</span> <a class="code hl_function" href="classIOException.html#adebe91abf8c2016c7c6f83eef943a87a">IOException</a>(<span class="keyword">const</span> std::string &amp;message) : std::runtime_error(message) {};</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>};</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>std::uint32_t <a class="code hl_function" href="io_8h.html#a63822c52a29dfd3ef04a7c1f8f2b828f">header_from_array</a>(std::array&lt;unsigned char, 4&gt; buf);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keywordtype">void</span> <a class="code hl_function" href="io_8h.html#a8a166e8fb5575f48c1bab8d6ee70d733">bind_o</a>(boost::asio::ip::tcp::socket&amp; socket,</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            boost::asio::posix::stream_descriptor&amp; tun_stream);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keywordtype">void</span> <a class="code hl_function" href="io_8h.html#a4b46fcc08aa4ef79101cc5245b01bf4d">bind_i</a>(boost::asio::ip::tcp::socket&amp; socket,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            boost::asio::posix::stream_descriptor&amp; tun_stream);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span></div>
+<div class="foldopen" id="foldopen00051" data-start="{" data-end="};">
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classIOException.html">   51</a></span><span class="keyword">class </span><a class="code hl_function" href="classIOException.html#adebe91abf8c2016c7c6f83eef943a87a">IOException</a> : <span class="keyword">public</span> std::runtime_error {</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> <span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00057" data-start="{" data-end="}">
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classIOException.html#adebe91abf8c2016c7c6f83eef943a87a">   57</a></span>  <span class="keyword">explicit</span> <a class="code hl_function" href="classIOException.html#adebe91abf8c2016c7c6f83eef943a87a">IOException</a>(<span class="keyword">const</span> std::string&amp; message)</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>      : std::runtime_error(message) {};</div>
 </div>
-<div class="ttc" id="aclassIOException_html_adebe91abf8c2016c7c6f83eef943a87a"><div class="ttname"><a href="classIOException.html#adebe91abf8c2016c7c6f83eef943a87a">IOException::IOException</a></div><div class="ttdeci">IOException(const std::string &amp;message)</div><div class="ttdoc">Создает исключение с текстом ошибки.</div><div class="ttdef"><b>Definition</b> io.h:39</div></div>
-<div class="ttc" id="aio_8h_html_a4b46fcc08aa4ef79101cc5245b01bf4d"><div class="ttname"><a href="io_8h.html#a4b46fcc08aa4ef79101cc5245b01bf4d">bind_i</a></div><div class="ttdeci">void bind_i(boost::asio::ip::tcp::socket &amp;socket, boost::asio::posix::stream_descriptor &amp;tun_stream)</div><div class="ttdoc">Запускает асинхронную передачу пакетов из TCP-сокета в TUN-интерфейс.</div><div class="ttdef"><b>Definition</b> io.cpp:81</div></div>
-<div class="ttc" id="aio_8h_html_a8a166e8fb5575f48c1bab8d6ee70d733"><div class="ttname"><a href="io_8h.html#a8a166e8fb5575f48c1bab8d6ee70d733">bind_o</a></div><div class="ttdeci">void bind_o(boost::asio::ip::tcp::socket &amp;socket, boost::asio::posix::stream_descriptor &amp;tun_stream)</div><div class="ttdoc">Запускает асинхронную передачу пакетов из TUN-интерфейса в TCP-сокет.</div><div class="ttdef"><b>Definition</b> io.cpp:52</div></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>};</div>
+</div>
+<div class="ttc" id="aclassIOException_html_adebe91abf8c2016c7c6f83eef943a87a"><div class="ttname"><a href="classIOException.html#adebe91abf8c2016c7c6f83eef943a87a">IOException::IOException</a></div><div class="ttdeci">IOException(const std::string &amp;message)</div><div class="ttdoc">Создает исключение с текстом ошибки.</div><div class="ttdef"><b>Definition</b> io.h:57</div></div>
+<div class="ttc" id="aio_8h_html_a4b46fcc08aa4ef79101cc5245b01bf4d"><div class="ttname"><a href="io_8h.html#a4b46fcc08aa4ef79101cc5245b01bf4d">bind_i</a></div><div class="ttdeci">void bind_i(boost::asio::ip::tcp::socket &amp;socket, boost::asio::posix::stream_descriptor &amp;tun_stream)</div><div class="ttdoc">Запускает асинхронную передачу пакетов из TCP-сокета в TUN-интерфейс.</div><div class="ttdef"><b>Definition</b> io.cpp:154</div></div>
+<div class="ttc" id="aio_8h_html_a63822c52a29dfd3ef04a7c1f8f2b828f"><div class="ttname"><a href="io_8h.html#a63822c52a29dfd3ef04a7c1f8f2b828f">header_from_array</a></div><div class="ttdeci">std::uint32_t header_from_array(std::array&lt; unsigned char, 4 &gt; buf)</div><div class="ttdoc">Декодирует 32-битное число из сетевого порядка байтов.</div><div class="ttdef"><b>Definition</b> io.cpp:39</div></div>
+<div class="ttc" id="aio_8h_html_a8a166e8fb5575f48c1bab8d6ee70d733"><div class="ttname"><a href="io_8h.html#a8a166e8fb5575f48c1bab8d6ee70d733">bind_o</a></div><div class="ttdeci">void bind_o(boost::asio::ip::tcp::socket &amp;socket, boost::asio::posix::stream_descriptor &amp;tun_stream)</div><div class="ttdoc">Запускает асинхронную передачу пакетов из TUN-интерфейса в TCP-сокет.</div><div class="ttdef"><b>Definition</b> io.cpp:125</div></div>
+<div class="ttc" id="aio_8h_html_a92851e84a62d0fe0684482298fad19c5"><div class="ttname"><a href="io_8h.html#a92851e84a62d0fe0684482298fad19c5">header_to_array</a></div><div class="ttdeci">std::array&lt; unsigned char, 4 &gt; header_to_array(std::uint32_t number)</div><div class="ttdoc">Кодирует 32-битное число в сетевой порядок байтов.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>src</b></li><li class="navelem"><b>shared</b></li><li class="navelem"><a href="io_8h.html">io.h</a></li>
+    <li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a href="dir_4f38db07240614f25134cb9a8bebbaf9.html">shared</a></li><li class="navelem"><a href="io_8h.html">io.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
   </ul>
 </div>

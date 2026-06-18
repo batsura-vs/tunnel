@@ -1,6 +1,7 @@
-#include "io.h"
-#include "tun.h"
-#include "utils.h"
+#include <fcntl.h>
+#include <sys/types.h>
+#include <unistd.h>
+
 #include <boost/asio.hpp>
 #include <boost/asio/buffer.hpp>
 #include <boost/asio/impl/write.hpp>
@@ -11,20 +12,21 @@
 #include <boost/asio/read.hpp>
 #include <boost/asio/write.hpp>
 #include <boost/system/detail/error_code.hpp>
-#include <fcntl.h>
 #include <iostream>
 #include <string>
-#include <sys/types.h>
-#include <unistd.h>
 
-int main(int argc, char *argv[]) {
+#include "io.h"
+#include "tun.h"
+#include "utils.h"
+
+int main(int argc, char* argv[]) {
   try {
     ServerParams config{argc, argv};
     std::string device = config.device;
-    int tun_fd = tun_alloc(device.data());
+    int tun_fd = tun_alloc(device.data(), config.tun_device.c_str());
 
     if (tun_fd < 0) {
-      throw IOException("tun_alloc failed");
+      throw IOException("tun_alloc failed: " + config.tun_device);
     }
 
     run(("ip addr replace " + config.ip_network + " dev " + config.device)
@@ -58,7 +60,7 @@ int main(int argc, char *argv[]) {
     bind_i(socket, tun_stream);
     bind_o(socket, tun_stream);
     io_context.run();
-  } catch (const std::exception &e) {
+  } catch (const std::exception& e) {
     std::cerr << "server error: " << e.what() << '\n';
     return 1;
   }

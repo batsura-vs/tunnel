@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tun_5falloc_0',['tun_alloc',['../tun_8h.html#acb9818c86626590a136db068e1504015',1,'tun.cpp']]]
+  ['ioexception_0',['IOException',['../classIOException.html#adebe91abf8c2016c7c6f83eef943a87a',1,'IOException']]]
 ];

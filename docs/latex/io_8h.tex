@@ -5,7 +5,9 @@
 Функции для обмена пакетами между TCP-\/сокетом и TUN-\/интерфейсом.  
 
 
+{\ttfamily \+\#include $<$array$>$}\newline
 {\ttfamily \+\#include $<$boost/\+asio.\+hpp$>$}\newline
+{\ttfamily \+\#include $<$cstdint$>$}\newline
 {\ttfamily \+\#include $<$stdexcept$>$}\newline
 {\ttfamily \+\#include $<$string$>$}\newline
 \doxysubsubsection*{Classes}
@@ -16,6 +18,10 @@ class \doxymbox{\hyperlink{classIOException}{IOException}}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+std::\+array$<$ unsigned char, 4 $>$ \doxymbox{\hyperlink{io_8h_a92851e84a62d0fe0684482298fad19c5}{header\+\_\+to\+\_\+array}} (std::\+uint32\+\_\+t number)
+\begin{DoxyCompactList}\small\item\em Кодирует 32-\/битное число в сетевой порядок байтов. \end{DoxyCompactList}\item 
+std::\+uint32\+\_\+t \doxymbox{\hyperlink{io_8h_a63822c52a29dfd3ef04a7c1f8f2b828f}{header\+\_\+from\+\_\+array}} (std::\+array$<$ unsigned char, 4 $>$ buf)
+\begin{DoxyCompactList}\small\item\em Декодирует 32-\/битное число из сетевого порядка байтов. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{io_8h_a8a166e8fb5575f48c1bab8d6ee70d733}{bind\+\_\+o}} (boost::\+asio::\+ip::\+tcp::\+socket \&socket, boost::\+asio::\+posix::\+stream\+\_\+descriptor \&tun\+\_\+stream)
 \begin{DoxyCompactList}\small\item\em Запускает асинхронную передачу пакетов из TUN-\/интерфейса в TCP-\/сокет. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{io_8h_a4b46fcc08aa4ef79101cc5245b01bf4d}{bind\+\_\+i}} (boost::\+asio::\+ip::\+tcp::\+socket \&socket, boost::\+asio::\+posix::\+stream\+\_\+descriptor \&tun\+\_\+stream)
@@ -74,3 +80,39 @@ void bind\+\_\+o (\begin{DoxyParamCaption}\item[{boost::\+asio::\+ip::\+tcp::\+s
 {\em \doxylink{classIOException}{IOException}} & Если чтение из TUN или запись в сокет завершается ошибкой. \\
 \hline
 \end{DoxyExceptions}
+\Hypertarget{io_8h_a63822c52a29dfd3ef04a7c1f8f2b828f}\index{io.h@{io.h}!header\_from\_array@{header\_from\_array}}
+\index{header\_from\_array@{header\_from\_array}!io.h@{io.h}}
+\doxysubsubsection{\texorpdfstring{header\_from\_array()}{header\_from\_array()}}
+{\footnotesize\ttfamily \label{io_8h_a63822c52a29dfd3ef04a7c1f8f2b828f} 
+std::\+uint32\+\_\+t header\+\_\+from\+\_\+array (\begin{DoxyParamCaption}\item[{std::\+array$<$ unsigned char, 4 $>$}]{buf}{}\end{DoxyParamCaption})}
+
+
+
+Декодирует 32-\/битное число из сетевого порядка байтов. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Массив из четырех байтов в порядке от старшего к младшему. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Число, восстановленное из заголовка пакета. 
+\end{DoxyReturn}
+\Hypertarget{io_8h_a92851e84a62d0fe0684482298fad19c5}\index{io.h@{io.h}!header\_to\_array@{header\_to\_array}}
+\index{header\_to\_array@{header\_to\_array}!io.h@{io.h}}
+\doxysubsubsection{\texorpdfstring{header\_to\_array()}{header\_to\_array()}}
+{\footnotesize\ttfamily \label{io_8h_a92851e84a62d0fe0684482298fad19c5} 
+std::\+array$<$ unsigned char, 4 $>$ header\+\_\+to\+\_\+array (\begin{DoxyParamCaption}\item[{std::\+uint32\+\_\+t}]{number}{}\end{DoxyParamCaption})}
+
+
+
+Кодирует 32-\/битное число в сетевой порядок байтов. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em number} & Число, которое нужно записать в заголовок пакета. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Массив из четырех байтов в порядке от старшего к младшему. 
+\end{DoxyReturn}

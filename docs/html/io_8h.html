@@ -94,7 +94,9 @@ $(function(){initNavTree('io_8h.html','',''); });
 
 <p>Функции для обмена пакетами между TCP-сокетом и TUN-интерфейсом.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;boost/asio.hpp&gt;</code><br />
+<div class="textblock"><code>#include &lt;array&gt;</code><br />
+<code>#include &lt;boost/asio.hpp&gt;</code><br />
+<code>#include &lt;cstdint&gt;</code><br />
 <code>#include &lt;stdexcept&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 </div>
@@ -107,6 +109,10 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a92851e84a62d0fe0684482298fad19c5" id="r_a92851e84a62d0fe0684482298fad19c5"><td class="memItemLeft">std::array&lt; unsigned char, 4 &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a92851e84a62d0fe0684482298fad19c5">header_to_array</a> (std::uint32_t number)</td></tr>
+<tr class="memdesc:a92851e84a62d0fe0684482298fad19c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Кодирует 32-битное число в сетевой порядок байтов.  <br /></td></tr>
+<tr class="memitem:a63822c52a29dfd3ef04a7c1f8f2b828f" id="r_a63822c52a29dfd3ef04a7c1f8f2b828f"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a63822c52a29dfd3ef04a7c1f8f2b828f">header_from_array</a> (std::array&lt; unsigned char, 4 &gt; buf)</td></tr>
+<tr class="memdesc:a63822c52a29dfd3ef04a7c1f8f2b828f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Декодирует 32-битное число из сетевого порядка байтов.  <br /></td></tr>
 <tr class="memitem:a8a166e8fb5575f48c1bab8d6ee70d733" id="r_a8a166e8fb5575f48c1bab8d6ee70d733"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a8a166e8fb5575f48c1bab8d6ee70d733">bind_o</a> (boost::asio::ip::tcp::socket &amp;socket, boost::asio::posix::stream_descriptor &amp;tun_stream)</td></tr>
 <tr class="memdesc:a8a166e8fb5575f48c1bab8d6ee70d733"><td class="mdescLeft">&#160;</td><td class="mdescRight">Запускает асинхронную передачу пакетов из TUN-интерфейса в TCP-сокет.  <br /></td></tr>
 <tr class="memitem:a4b46fcc08aa4ef79101cc5245b01bf4d" id="r_a4b46fcc08aa4ef79101cc5245b01bf4d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4b46fcc08aa4ef79101cc5245b01bf4d">bind_i</a> (boost::asio::ip::tcp::socket &amp;socket, boost::asio::posix::stream_descriptor &amp;tun_stream)</td></tr>
@@ -187,6 +193,58 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a63822c52a29dfd3ef04a7c1f8f2b828f" name="a63822c52a29dfd3ef04a7c1f8f2b828f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63822c52a29dfd3ef04a7c1f8f2b828f">&#9670;&#160;</a></span>header_from_array()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::uint32_t header_from_array </td>
+          <td>(</td>
+          <td class="paramtype">std::array&lt; unsigned char, 4 &gt;</td>          <td class="paramname"><span class="paramname"><em>buf</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Декодирует 32-битное число из сетевого порядка байтов. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buf</td><td>Массив из четырех байтов в порядке от старшего к младшему. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Число, восстановленное из заголовка пакета. </dd></dl>
+
+</div>
+</div>
+<a id="a92851e84a62d0fe0684482298fad19c5" name="a92851e84a62d0fe0684482298fad19c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92851e84a62d0fe0684482298fad19c5">&#9670;&#160;</a></span>header_to_array()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::array&lt; unsigned char, 4 &gt; header_to_array </td>
+          <td>(</td>
+          <td class="paramtype">std::uint32_t</td>          <td class="paramname"><span class="paramname"><em>number</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Кодирует 32-битное число в сетевой порядок байтов. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">number</td><td>Число, которое нужно записать в заголовок пакета. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Массив из четырех байтов в порядке от старшего к младшему. </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
@@ -200,7 +258,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>src</b></li><li class="navelem"><b>shared</b></li><li class="navelem"><a href="io_8h.html">io.h</a></li>
+    <li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a href="dir_4f38db07240614f25134cb9a8bebbaf9.html">shared</a></li><li class="navelem"><a href="io_8h.html">io.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
   </ul>
 </div>

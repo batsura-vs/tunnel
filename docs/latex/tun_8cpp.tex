@@ -1,0 +1,40 @@
+\doxysection{src/\+shared/\+tun.cpp File Reference}
+\hypertarget{tun_8cpp}{}\label{tun_8cpp}\index{src/shared/tun.cpp@{src/shared/tun.cpp}}
+{\ttfamily \+\#include "{}tun.\+h"{}}\newline
+{\ttfamily \+\#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \+\#include $<$linux/\+if.\+h$>$}\newline
+{\ttfamily \+\#include $<$linux/\+if\+\_\+tun.\+h$>$}\newline
+{\ttfamily \+\#include $<$sys/\+ioctl.\+h$>$}\newline
+{\ttfamily \+\#include $<$sys/\+types.\+h$>$}\newline
+{\ttfamily \+\#include $<$unistd.\+h$>$}\newline
+{\ttfamily \+\#include $<$cstring$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{tun_8cpp_a8b2855e40898a58291627874c2b7b28e}{tun\+\_\+alloc}} (char \texorpdfstring{$\ast$}{*}dev, const char \texorpdfstring{$\ast$}{*}device\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Выделяет сетевой TUN-\/интерфейс в Linux. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{tun_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{tun_8cpp_a8b2855e40898a58291627874c2b7b28e}\index{tun.cpp@{tun.cpp}!tun\_alloc@{tun\_alloc}}
+\index{tun\_alloc@{tun\_alloc}!tun.cpp@{tun.cpp}}
+\doxysubsubsection{\texorpdfstring{tun\_alloc()}{tun\_alloc()}}
+{\footnotesize\ttfamily \label{tun_8cpp_a8b2855e40898a58291627874c2b7b28e} 
+int tun\+\_\+alloc (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{dev}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{device\+\_\+path}{}\end{DoxyParamCaption})}
+
+
+
+Выделяет сетевой TUN-\/интерфейс в Linux. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dev} & Буфер с именем интерфейса. Если в нем указано имя, запрашивается именно оно. При успешном выполнении в буфер записывается фактическое имя интерфейса. \\
+\hline
+{\em device\+\_\+path} & Путь к Linux TUN-\/устройству. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Файловый дескриптор выделенного TUN-\/интерфейса или отрицательное значение при ошибке. 
+\end{DoxyReturn}

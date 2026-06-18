@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['tun_2eh_0',['tun.h',['../tun_8h.html',1,'']]],
-  ['tun_5falloc_1',['tun_alloc',['../tun_8h.html#acb9818c86626590a136db068e1504015',1,'tun.cpp']]]
+  ['listen_5fon_0',['listen_on',['../structServerParams.html#a625766f043020aec31acc22cefc967db',1,'ServerParams']]],
+  ['log_5fpacket_1',['log_packet',['../io_8cpp.html#a2b3601adac8d8e34311e0d60f358c40e',1,'io.cpp']]]
 ];

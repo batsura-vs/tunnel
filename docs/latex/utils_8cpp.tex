@@ -1,0 +1,95 @@
+\doxysection{src/\+shared/\+utils.cpp File Reference}
+\hypertarget{utils_8cpp}{}\label{utils_8cpp}\index{src/shared/utils.cpp@{src/shared/utils.cpp}}
+{\ttfamily \+\#include "{}utils.\+h"{}}\newline
+{\ttfamily \+\#include $<$cstdlib$>$}\newline
+{\ttfamily \+\#include $<$string$>$}\newline
+{\ttfamily \+\#include "{}io.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{utils_8cpp_af5dc99d09408bba33e0adc0e7550181b}{run}} (const char \texorpdfstring{$\ast$}{*}cmd)
+\begin{DoxyCompactList}\small\item\em Выполняет команду в системной оболочке. \end{DoxyCompactList}\item 
+std::\+string \doxymbox{\hyperlink{utils_8cpp_af2ebbc3c026becb0989802c2833ad7e9}{next\+\_\+arg}} (int argc, char \texorpdfstring{$\ast$}{*}argv\+[$\,$]\+, int \&index, const std::\+string \&arg)
+\begin{DoxyCompactList}\small\item\em Возвращает следующий аргумент командной строки. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{utils_8cpp_afd3ad4444e518022fa3d2e3feac941e5}{parse\+\_\+port}} (const std::\+string \&value)
+\begin{DoxyCompactList}\small\item\em Преобразует строку с номером TCP-\/порта в целое число. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{utils_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{utils_8cpp_af2ebbc3c026becb0989802c2833ad7e9}\index{utils.cpp@{utils.cpp}!next\_arg@{next\_arg}}
+\index{next\_arg@{next\_arg}!utils.cpp@{utils.cpp}}
+\doxysubsubsection{\texorpdfstring{next\_arg()}{next\_arg()}}
+{\footnotesize\ttfamily \label{utils_8cpp_af2ebbc3c026becb0989802c2833ad7e9} 
+std::\+string next\+\_\+arg (\begin{DoxyParamCaption}\item[{int}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{argv}{\+[$\,$]\+, }\item[{int \&}]{index}{, }\item[{const std::\+string \&}]{arg}{}\end{DoxyParamCaption})}
+
+
+
+Возвращает следующий аргумент командной строки. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Количество аргументов командной строки. \\
+\hline
+{\em argv} & Массив аргументов командной строки. \\
+\hline
+{\em index} & Индекс текущего аргумента; при успехе увеличивается на один. \\
+\hline
+{\em arg} & Имя аргумента, для которого читается значение. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Значение, следующее за текущим аргументом. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \doxylink{classParseException}{Parse\+Exception}} & Если значение отсутствует. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{utils_8cpp_afd3ad4444e518022fa3d2e3feac941e5}\index{utils.cpp@{utils.cpp}!parse\_port@{parse\_port}}
+\index{parse\_port@{parse\_port}!utils.cpp@{utils.cpp}}
+\doxysubsubsection{\texorpdfstring{parse\_port()}{parse\_port()}}
+{\footnotesize\ttfamily \label{utils_8cpp_afd3ad4444e518022fa3d2e3feac941e5} 
+int parse\+\_\+port (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{value}{}\end{DoxyParamCaption})}
+
+
+
+Преобразует строку с номером TCP-\/порта в целое число. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Строковое представление порта. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Номер порта в диапазоне от 1 до 65535. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \doxylink{classParseException}{Parse\+Exception}} & Если строка не является корректным номером порта. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{utils_8cpp_af5dc99d09408bba33e0adc0e7550181b}\index{utils.cpp@{utils.cpp}!run@{run}}
+\index{run@{run}!utils.cpp@{utils.cpp}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{utils_8cpp_af5dc99d09408bba33e0adc0e7550181b} 
+int run (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{cmd}{}\end{DoxyParamCaption})}
+
+
+
+Выполняет команду в системной оболочке. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cmd} & Команда в виде строки с нулевым символом в конце. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Код завершения команды, возвращенный системной оболочкой. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \doxylink{classIOException}{IOException}} & Если команда завершается с ненулевым кодом. \\
+\hline
+\end{DoxyExceptions}

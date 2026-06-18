@@ -30,18 +30,38 @@ BOOST_AUTO_TEST_CASE(client_params_reads_port_and_server) {
   char a2[] = "192.168.1.10";
   char a3[] = "--port";
   char a4[] = "7777";
-  char *argv[] = {a0, a1, a2, a3, a4};
+  char* argv[] = {a0, a1, a2, a3, a4};
 
   ClientParams params(5, argv);
 
   BOOST_TEST(params.server_ip == "192.168.1.10");
   BOOST_TEST(params.port == 7777);
+  BOOST_TEST(params.tun_device == "/dev/net/tun");
+}
+
+BOOST_AUTO_TEST_CASE(client_params_reads_tun_device) {
+  char a0[] = "client";
+  char a1[] = "--tun-device";
+  char a2[] = "/dev/custom-tun";
+  char* argv[] = {a0, a1, a2};
+
+  ClientParams params(3, argv);
+
+  BOOST_TEST(params.tun_device == "/dev/custom-tun");
+}
+
+BOOST_AUTO_TEST_CASE(client_params_rejects_missing_tun_device_value) {
+  char a0[] = "client";
+  char a1[] = "--tun-device";
+  char* argv[] = {a0, a1};
+
+  BOOST_CHECK_THROW(ClientParams(2, argv), ParseException);
 }
 
 BOOST_AUTO_TEST_CASE(client_params_rejects_unknown_argument) {
   char a0[] = "client";
   char a1[] = "--wrong";
-  char *argv[] = {a0, a1};
+  char* argv[] = {a0, a1};
 
   BOOST_CHECK_THROW(ClientParams(2, argv), ParseException);
 }
@@ -49,7 +69,7 @@ BOOST_AUTO_TEST_CASE(client_params_rejects_unknown_argument) {
 BOOST_AUTO_TEST_CASE(client_params_rejects_missing_server_value) {
   char a0[] = "client";
   char a1[] = "--server";
-  char *argv[] = {a0, a1};
+  char* argv[] = {a0, a1};
 
   BOOST_CHECK_THROW(ClientParams(2, argv), ParseException);
 }
@@ -58,7 +78,7 @@ BOOST_AUTO_TEST_CASE(client_params_rejects_invalid_port) {
   char a0[] = "client";
   char a1[] = "--port";
   char a2[] = "abc";
-  char *argv[] = {a0, a1, a2};
+  char* argv[] = {a0, a1, a2};
 
   BOOST_CHECK_THROW(ClientParams(3, argv), ParseException);
 }

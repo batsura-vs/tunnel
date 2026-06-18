@@ -13,7 +13,7 @@
  * @return Код завершения команды, возвращенный системной оболочкой.
  * @throws IOException Если команда завершается с ненулевым кодом.
  */
-int run(const char *cmd);
+int run(const char* cmd);
 
 /**
  * @brief Возвращает следующий аргумент командной строки.
@@ -22,29 +22,29 @@ int run(const char *cmd);
  * @param index Индекс текущего аргумента; при успехе увеличивается на один.
  * @param arg Имя аргумента, для которого читается значение.
  * @return Значение, следующее за текущим аргументом.
- * @throws IOException Если значение отсутствует.
+ * @throws ParseException Если значение отсутствует.
  */
-std::string next_arg(int argc, char *argv[], int &index,
-                     const std::string &arg);
+std::string next_arg(int argc, char* argv[], int& index,
+                     const std::string& arg);
 
 /**
  * @brief Преобразует строку с номером TCP-порта в целое число.
  * @param value Строковое представление порта.
  * @return Номер порта в диапазоне от 1 до 65535.
- * @throws IOException Если строка не является корректным номером порта.
+ * @throws ParseException Если строка не является корректным номером порта.
  */
-int parse_port(const std::string &value);
+int parse_port(const std::string& value);
 
 /**
  * @brief Тип исключения для ошибок парсинга.
  */
 class ParseException : public std::runtime_error {
-public:
+ public:
   /**
    * @brief Создает исключение с текстом ошибки.
    * @param message Описание ошибки.
    */
-  explicit ParseException(const std::string &message)
+  explicit ParseException(const std::string& message)
       : std::runtime_error(message) {};
 };
 
@@ -57,6 +57,9 @@ public:
 struct ServerParams {
   /** @brief Имя создаваемого TUN-интерфейса. */
   std::string device{"tun1"};
+
+  /** @brief Путь к Linux TUN-устройству. */
+  std::string tun_device{"/dev/net/tun"};
 
   /** @brief IP-адрес и маска сети, назначаемые TUN-интерфейсу. */
   std::string ip_network{"10.0.0.1/24"};
@@ -74,17 +77,19 @@ struct ServerParams {
    * @brief Создает параметры сервера из аргументов командной строки.
    * @param argc Количество аргументов командной строки.
    * @param argv Массив аргументов командной строки.
-   * @throws IOException Если передан неизвестный аргумент, отсутствует значение
+   * @throws ParseException Если передан неизвестный аргумент, отсутствует значение
    *         аргумента или указан некорректный порт.
    */
-  ServerParams(int argc, char *argv[]) { from_args(argc, argv); }
+  ServerParams(int argc, char* argv[]) { from_args(argc, argv); }
 
-private:
-  void from_args(int argc, char *argv[]) {
+ private:
+  void from_args(int argc, char* argv[]) {
     for (int i{1}; i < argc; i++) {
       std::string arg{argv[i]};
       if (arg == "--tun-name") {
         device = next_arg(argc, argv, i, arg);
+      } else if (arg == "--tun-device") {
+        tun_device = next_arg(argc, argv, i, arg);
       } else if (arg == "--net") {
         ip_network = next_arg(argc, argv, i, arg);
       } else if (arg == "--interface") {
@@ -110,6 +115,9 @@ struct ClientParams {
   /** @brief Имя создаваемого TUN-интерфейса. */
   std::string device{"tun2"};
 
+  /** @brief Путь к Linux TUN-устройству. */
+  std::string tun_device{"/dev/net/tun"};
+
   /** @brief IP-адрес и маска сети, назначаемые TUN-интерфейсу. */
   std::string ip_network{"10.0.0.2/24"};
 
@@ -130,17 +138,19 @@ struct ClientParams {
    * @brief Создает параметры клиента из аргументов командной строки.
    * @param argc Количество аргументов командной строки.
    * @param argv Массив аргументов командной строки.
-   * @throws IOException Если передан неизвестный аргумент, отсутствует значение
+   * @throws ParseException Если передан неизвестный аргумент, отсутствует значение
    *         аргумента или указан некорректный порт.
    */
-  ClientParams(int argc, char *argv[]) { from_args(argc, argv); }
+  ClientParams(int argc, char* argv[]) { from_args(argc, argv); }
 
-private:
-  void from_args(int argc, char *argv[]) {
+ private:
+  void from_args(int argc, char* argv[]) {
     for (int i{1}; i < argc; i++) {
       std::string arg{argv[i]};
       if (arg == "--tun-name") {
         device = next_arg(argc, argv, i, arg);
+      } else if (arg == "--tun-device") {
+        tun_device = next_arg(argc, argv, i, arg);
       } else if (arg == "--net") {
         ip_network = next_arg(argc, argv, i, arg);
       } else if (arg == "--interface") {

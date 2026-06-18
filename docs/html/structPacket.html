@@ -91,23 +91,146 @@ $(function(){initNavTree('structPacket.html','','structPacket-members'); });
   <div class="headertitle"><div class="title">Packet Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Сетевой пакет с заголовком размера.  
+ <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a92383af7298a8d473e385d4e1c77e247" id="r_a92383af7298a8d473e385d4e1c77e247"><td class="memItemLeft"><a id="a92383af7298a8d473e385d4e1c77e247" name="a92383af7298a8d473e385d4e1c77e247"></a>
-&#160;</td><td class="memItemRight"><b>Packet</b> (std::array&lt; char, Constants::buffer_size &gt; payload, std::size_t payload_size)</td></tr>
+<tr class="memitem:ab1ec7232eac75450a4392bb9c10921fb" id="r_ab1ec7232eac75450a4392bb9c10921fb"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ab1ec7232eac75450a4392bb9c10921fb">Packet</a> ()=default</td></tr>
+<tr class="memdesc:ab1ec7232eac75450a4392bb9c10921fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Создаёт пустой пакет.  <br /></td></tr>
+<tr class="memitem:a6cb56d0563fd4b3449057bf3bebb23c4" id="r_a6cb56d0563fd4b3449057bf3bebb23c4"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a6cb56d0563fd4b3449057bf3bebb23c4">Packet</a> (std::array&lt; unsigned char, <a class="el" href="namespaceConstants.html#ab7d03273bcb68469bca467c64fecf103">Constants::buffer_size</a> &gt; <a class="el" href="#a913538aae43664a3c7aa667ca917a4d8">payload</a>, std::size_t <a class="el" href="#a4fbdf75baef6f022fd0d4bfdab0c3399">payload_size</a>)</td></tr>
+<tr class="memdesc:a6cb56d0563fd4b3449057bf3bebb23c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Создаёт пакет из заданной полезной нагрузки и формирует заголовок размера.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ac8101a5e2272312ace9461056269d16e" id="r_ac8101a5e2272312ace9461056269d16e"><td class="memItemLeft"><a id="ac8101a5e2272312ace9461056269d16e" name="ac8101a5e2272312ace9461056269d16e"></a>
-std::array&lt; unsigned char, 4 &gt;&#160;</td><td class="memItemRight"><b>header</b> {}</td></tr>
-<tr class="memitem:aa8122e87c5437c87e2364ed6cb9bab2d" id="r_aa8122e87c5437c87e2364ed6cb9bab2d"><td class="memItemLeft"><a id="aa8122e87c5437c87e2364ed6cb9bab2d" name="aa8122e87c5437c87e2364ed6cb9bab2d"></a>
-std::array&lt; char, Constants::buffer_size &gt;&#160;</td><td class="memItemRight"><b>payload</b> {}</td></tr>
-<tr class="memitem:a4fbdf75baef6f022fd0d4bfdab0c3399" id="r_a4fbdf75baef6f022fd0d4bfdab0c3399"><td class="memItemLeft"><a id="a4fbdf75baef6f022fd0d4bfdab0c3399" name="a4fbdf75baef6f022fd0d4bfdab0c3399"></a>
-std::size_t&#160;</td><td class="memItemRight"><b>payload_size</b> {}</td></tr>
+<tr class="memitem:ac8101a5e2272312ace9461056269d16e" id="r_ac8101a5e2272312ace9461056269d16e"><td class="memItemLeft">std::array&lt; unsigned char, 4 &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ac8101a5e2272312ace9461056269d16e">header</a> {}</td></tr>
+<tr class="memdesc:ac8101a5e2272312ace9461056269d16e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Четырёхбайтовый заголовок с размером payload в сетевом порядке байтов.  <br /></td></tr>
+<tr class="memitem:a913538aae43664a3c7aa667ca917a4d8" id="r_a913538aae43664a3c7aa667ca917a4d8"><td class="memItemLeft">std::array&lt; unsigned char, <a class="el" href="namespaceConstants.html#ab7d03273bcb68469bca467c64fecf103">Constants::buffer_size</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a913538aae43664a3c7aa667ca917a4d8">payload</a> {}</td></tr>
+<tr class="memdesc:a913538aae43664a3c7aa667ca917a4d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Буфер с полезной нагрузкой пакета (IP-пакет из TUN).  <br /></td></tr>
+<tr class="memitem:a4fbdf75baef6f022fd0d4bfdab0c3399" id="r_a4fbdf75baef6f022fd0d4bfdab0c3399"><td class="memItemLeft">std::size_t&#160;</td><td class="memItemRight"><a class="el" href="#a4fbdf75baef6f022fd0d4bfdab0c3399">payload_size</a> {}</td></tr>
+<tr class="memdesc:a4fbdf75baef6f022fd0d4bfdab0c3399"><td class="mdescLeft">&#160;</td><td class="mdescRight">Фактический размер полезной нагрузки в байтах.  <br /></td></tr>
 </table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Сетевой пакет с заголовком размера. </p>
+<p>Используется при обмене данными между TUN-интерфейсом и TCP-сокетом. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ab1ec7232eac75450a4392bb9c10921fb" name="ab1ec7232eac75450a4392bb9c10921fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1ec7232eac75450a4392bb9c10921fb">&#9670;&#160;</a></span>Packet() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Packet::Packet </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Создаёт пустой пакет. </p>
+
+</div>
+</div>
+<a id="a6cb56d0563fd4b3449057bf3bebb23c4" name="a6cb56d0563fd4b3449057bf3bebb23c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cb56d0563fd4b3449057bf3bebb23c4">&#9670;&#160;</a></span>Packet() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Packet::Packet </td>
+          <td>(</td>
+          <td class="paramtype">std::array&lt; unsigned char, <a class="el" href="namespaceConstants.html#ab7d03273bcb68469bca467c64fecf103">Constants::buffer_size</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>payload</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t</td>          <td class="paramname"><span class="paramname"><em>payload_size</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Создаёт пакет из заданной полезной нагрузки и формирует заголовок размера. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="#a913538aae43664a3c7aa667ca917a4d8" title="Буфер с полезной нагрузкой пакета (IP-пакет из TUN).">payload</a></td><td>Буфер с полезной нагрузкой пакета. </td></tr>
+    <tr><td class="paramname"><a class="el" href="#a4fbdf75baef6f022fd0d4bfdab0c3399" title="Фактический размер полезной нагрузки в байтах.">payload_size</a></td><td>Размер полезной нагрузки в байтах. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="ac8101a5e2272312ace9461056269d16e" name="ac8101a5e2272312ace9461056269d16e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8101a5e2272312ace9461056269d16e">&#9670;&#160;</a></span>header</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::array&lt;unsigned char, 4&gt; Packet::header {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Четырёхбайтовый заголовок с размером payload в сетевом порядке байтов. </p>
+
+</div>
+</div>
+<a id="a913538aae43664a3c7aa667ca917a4d8" name="a913538aae43664a3c7aa667ca917a4d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a913538aae43664a3c7aa667ca917a4d8">&#9670;&#160;</a></span>payload</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::array&lt;unsigned char, <a class="el" href="namespaceConstants.html#ab7d03273bcb68469bca467c64fecf103">Constants::buffer_size</a>&gt; Packet::payload {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Буфер с полезной нагрузкой пакета (IP-пакет из TUN). </p>
+
+</div>
+</div>
+<a id="a4fbdf75baef6f022fd0d4bfdab0c3399" name="a4fbdf75baef6f022fd0d4bfdab0c3399"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fbdf75baef6f022fd0d4bfdab0c3399">&#9670;&#160;</a></span>payload_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t Packet::payload_size {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Фактический размер полезной нагрузки в байтах. </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>src/shared/<b>io.cpp</b></li>
+<li>src/shared/<a class="el" href="io_8cpp.html">io.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

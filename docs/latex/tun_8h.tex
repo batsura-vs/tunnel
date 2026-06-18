@@ -8,7 +8,7 @@
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \doxymbox{\hyperlink{tun_8h_acb9818c86626590a136db068e1504015}{tun\+\_\+alloc}} (char \texorpdfstring{$\ast$}{*}dev)
+int \doxymbox{\hyperlink{tun_8h_a8b2855e40898a58291627874c2b7b28e}{tun\+\_\+alloc}} (char \texorpdfstring{$\ast$}{*}dev, const char \texorpdfstring{$\ast$}{*}device\+\_\+path)
 \begin{DoxyCompactList}\small\item\em Выделяет сетевой TUN-\/интерфейс в Linux. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -20,11 +20,11 @@ int \doxymbox{\hyperlink{tun_8h_acb9818c86626590a136db068e1504015}{tun\+\_\+allo
 \label{doc-func-members}
 \Hypertarget{tun_8h_doc-func-members}
 \doxysubsection{Function Documentation}
-\Hypertarget{tun_8h_acb9818c86626590a136db068e1504015}\index{tun.h@{tun.h}!tun\_alloc@{tun\_alloc}}
+\Hypertarget{tun_8h_a8b2855e40898a58291627874c2b7b28e}\index{tun.h@{tun.h}!tun\_alloc@{tun\_alloc}}
 \index{tun\_alloc@{tun\_alloc}!tun.h@{tun.h}}
 \doxysubsubsection{\texorpdfstring{tun\_alloc()}{tun\_alloc()}}
-{\footnotesize\ttfamily \label{tun_8h_acb9818c86626590a136db068e1504015} 
-int tun\+\_\+alloc (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{dev}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{tun_8h_a8b2855e40898a58291627874c2b7b28e} 
+int tun\+\_\+alloc (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{dev}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{device\+\_\+path}{}\end{DoxyParamCaption})}
 
 
 
@@ -33,6 +33,8 @@ int tun\+\_\+alloc (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{
 
 \begin{DoxyParams}{Parameters}
 {\em dev} & Буфер с именем интерфейса. Если в нем указано имя, запрашивается именно оно. При успешном выполнении в буфер записывается фактическое имя интерфейса. \\
+\hline
+{\em device\+\_\+path} & Путь к Linux TUN-\/устройству. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

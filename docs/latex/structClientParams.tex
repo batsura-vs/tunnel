@@ -1,34 +1,145 @@
 \doxysection{Client\+Params Struct Reference}
 \hypertarget{structClientParams}{}\label{structClientParams}\index{ClientParams@{ClientParams}}
+
+
+Параметры запуска клиентской части туннеля.  
+
+
+
+
+{\ttfamily \+\#include $<$utils.\+h$>$}
+
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{structClientParams_aa26e4e02050529c8da58b54b95603f62}\label{structClientParams_aa26e4e02050529c8da58b54b95603f62} 
-{\bfseries Client\+Params} (int argc, char \texorpdfstring{$\ast$}{*}argv\+[$\,$]\+)
-\end{DoxyCompactItemize}
+\doxymbox{\hyperlink{structClientParams_aa26e4e02050529c8da58b54b95603f62}{Client\+Params}} (int argc, char \texorpdfstring{$\ast$}{*}argv\+[$\,$]\+)
+\begin{DoxyCompactList}\small\item\em Создает параметры клиента из аргументов командной строки. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{structClientParams_a91724b8c8b3a7c8d2269031f744a83ec}\label{structClientParams_a91724b8c8b3a7c8d2269031f744a83ec} 
-std::\+string {\bfseries device} \{"{}tun2"{}\}
-\item 
-\Hypertarget{structClientParams_afe88f431d6146172ee9764d5221d59c5}\label{structClientParams_afe88f431d6146172ee9764d5221d59c5} 
-std::\+string {\bfseries ip\+\_\+network} \{"{}10.\+0.\+0.\+2/\+24"{}\}
-\item 
-\Hypertarget{structClientParams_a4192053c7edbb6057653cfe2fdc96fbc}\label{structClientParams_a4192053c7edbb6057653cfe2fdc96fbc} 
-std::\+string {\bfseries interface} \{"{}wlo1"{}\}
-\item 
-\Hypertarget{structClientParams_a3d779edd124f5fa5d04a473445ca3179}\label{structClientParams_a3d779edd124f5fa5d04a473445ca3179} 
-std::\+string {\bfseries gateway} \{\}
-\item 
-\Hypertarget{structClientParams_ac79c36d7ef701a2b331f029d44336170}\label{structClientParams_ac79c36d7ef701a2b331f029d44336170} 
-std::\+string {\bfseries server\+\_\+ip} \{"{}127.\+0.\+0.\+1"{}\}
-\item 
-\Hypertarget{structClientParams_a40055edd3ec9096537c0a269ad31a8cc}\label{structClientParams_a40055edd3ec9096537c0a269ad31a8cc} 
-int {\bfseries port} \{5555\}
-\end{DoxyCompactItemize}
+std::\+string \doxymbox{\hyperlink{structClientParams_a91724b8c8b3a7c8d2269031f744a83ec}{device}} \{"{}tun2"{}\}
+\begin{DoxyCompactList}\small\item\em Имя создаваемого TUN-\/интерфейса. \end{DoxyCompactList}\item 
+std::\+string \doxymbox{\hyperlink{structClientParams_a9140f14350cc7360502dee2d7cb87700}{tun\+\_\+device}} \{"{}/\+dev/\+net/\+tun"{}\}
+\begin{DoxyCompactList}\small\item\em Путь к Linux TUN-\/устройству. \end{DoxyCompactList}\item 
+std::\+string \doxymbox{\hyperlink{structClientParams_afe88f431d6146172ee9764d5221d59c5}{ip\+\_\+network}} \{"{}10.\+0.\+0.\+2/\+24"{}\}
+\begin{DoxyCompactList}\small\item\em IP-\/адрес и маска сети, назначаемые TUN-\/интерфейсу. \end{DoxyCompactList}\item 
+std::\+string \doxymbox{\hyperlink{structClientParams_a4192053c7edbb6057653cfe2fdc96fbc}{interface}} \{"{}wlo1"{}\}
+\begin{DoxyCompactList}\small\item\em Имя физического сетевого интерфейса для маршрута к серверу. \end{DoxyCompactList}\item 
+std::\+string \doxymbox{\hyperlink{structClientParams_a3d779edd124f5fa5d04a473445ca3179}{gateway}} \{\}
+\begin{DoxyCompactList}\small\item\em IP-\/адрес шлюза для маршрута к серверу; пустая строка означает маршрут без шлюза. \end{DoxyCompactList}\item 
+std::\+string \doxymbox{\hyperlink{structClientParams_ac79c36d7ef701a2b331f029d44336170}{server\+\_\+ip}} \{"{}127.\+0.\+0.\+1"{}\}
+\begin{DoxyCompactList}\small\item\em IP-\/адрес сервера, к которому подключается клиент. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{structClientParams_a40055edd3ec9096537c0a269ad31a8cc}{port}} \{5555\}
+\begin{DoxyCompactList}\small\item\em TCP-\/порт сервера. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Параметры запуска клиентской части туннеля. 
+
+Хранит значения, необходимые клиенту для создания TUN-\/интерфейса, настройки маршрутов и подключения к TCP-\/серверу. 
+
+\label{doc-constructors}
+\Hypertarget{structClientParams_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structClientParams_aa26e4e02050529c8da58b54b95603f62}\index{ClientParams@{ClientParams}!ClientParams@{ClientParams}}
+\index{ClientParams@{ClientParams}!ClientParams@{ClientParams}}
+\doxysubsubsection{\texorpdfstring{ClientParams()}{ClientParams()}}
+{\footnotesize\ttfamily \label{structClientParams_aa26e4e02050529c8da58b54b95603f62} 
+Client\+Params::\+\+Client\+Params (\begin{DoxyParamCaption}\item[{int}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{argv}{\+[$\,$]\+}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Создает параметры клиента из аргументов командной строки. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Количество аргументов командной строки. \\
+\hline
+{\em argv} & Массив аргументов командной строки. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \doxylink{classParseException}{Parse\+Exception}} & Если передан неизвестный аргумент, отсутствует значение аргумента или указан некорректный порт. \\
+\hline
+\end{DoxyExceptions}
+
+
+\label{doc-variable-members}
+\Hypertarget{structClientParams_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structClientParams_a91724b8c8b3a7c8d2269031f744a83ec}\index{ClientParams@{ClientParams}!device@{device}}
+\index{device@{device}!ClientParams@{ClientParams}}
+\doxysubsubsection{\texorpdfstring{device}{device}}
+{\footnotesize\ttfamily \label{structClientParams_a91724b8c8b3a7c8d2269031f744a83ec} 
+std::\+string Client\+Params::\+device \{"{}tun2"{}\}}
+
+
+
+Имя создаваемого TUN-\/интерфейса. 
+
+\Hypertarget{structClientParams_a3d779edd124f5fa5d04a473445ca3179}\index{ClientParams@{ClientParams}!gateway@{gateway}}
+\index{gateway@{gateway}!ClientParams@{ClientParams}}
+\doxysubsubsection{\texorpdfstring{gateway}{gateway}}
+{\footnotesize\ttfamily \label{structClientParams_a3d779edd124f5fa5d04a473445ca3179} 
+std::\+string Client\+Params::\+gateway \{\}}
+
+
+
+IP-\/адрес шлюза для маршрута к серверу; пустая строка означает маршрут без шлюза. 
+
+\Hypertarget{structClientParams_a4192053c7edbb6057653cfe2fdc96fbc}\index{ClientParams@{ClientParams}!interface@{interface}}
+\index{interface@{interface}!ClientParams@{ClientParams}}
+\doxysubsubsection{\texorpdfstring{interface}{interface}}
+{\footnotesize\ttfamily \label{structClientParams_a4192053c7edbb6057653cfe2fdc96fbc} 
+std::\+string Client\+Params::\+interface \{"{}wlo1"{}\}}
+
+
+
+Имя физического сетевого интерфейса для маршрута к серверу. 
+
+\Hypertarget{structClientParams_afe88f431d6146172ee9764d5221d59c5}\index{ClientParams@{ClientParams}!ip\_network@{ip\_network}}
+\index{ip\_network@{ip\_network}!ClientParams@{ClientParams}}
+\doxysubsubsection{\texorpdfstring{ip\_network}{ip\_network}}
+{\footnotesize\ttfamily \label{structClientParams_afe88f431d6146172ee9764d5221d59c5} 
+std::\+string Client\+Params::\+ip\+\_\+network \{"{}10.\+0.\+0.\+2/\+24"{}\}}
+
+
+
+IP-\/адрес и маска сети, назначаемые TUN-\/интерфейсу. 
+
+\Hypertarget{structClientParams_a40055edd3ec9096537c0a269ad31a8cc}\index{ClientParams@{ClientParams}!port@{port}}
+\index{port@{port}!ClientParams@{ClientParams}}
+\doxysubsubsection{\texorpdfstring{port}{port}}
+{\footnotesize\ttfamily \label{structClientParams_a40055edd3ec9096537c0a269ad31a8cc} 
+int Client\+Params::\+port \{5555\}}
+
+
+
+TCP-\/порт сервера. 
+
+\Hypertarget{structClientParams_ac79c36d7ef701a2b331f029d44336170}\index{ClientParams@{ClientParams}!server\_ip@{server\_ip}}
+\index{server\_ip@{server\_ip}!ClientParams@{ClientParams}}
+\doxysubsubsection{\texorpdfstring{server\_ip}{server\_ip}}
+{\footnotesize\ttfamily \label{structClientParams_ac79c36d7ef701a2b331f029d44336170} 
+std::\+string Client\+Params::\+server\+\_\+ip \{"{}127.\+0.\+0.\+1"{}\}}
+
+
+
+IP-\/адрес сервера, к которому подключается клиент. 
+
+\Hypertarget{structClientParams_a9140f14350cc7360502dee2d7cb87700}\index{ClientParams@{ClientParams}!tun\_device@{tun\_device}}
+\index{tun\_device@{tun\_device}!ClientParams@{ClientParams}}
+\doxysubsubsection{\texorpdfstring{tun\_device}{tun\_device}}
+{\footnotesize\ttfamily \label{structClientParams_a9140f14350cc7360502dee2d7cb87700} 
+std::\+string Client\+Params::\+tun\+\_\+device \{"{}/\+dev/\+net/\+tun"{}\}}
+
+
+
+Путь к Linux TUN-\/устройству. 
+
 
 
 The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
 \item 
-src/\+client/\+main.\+cpp\end{DoxyCompactItemize}
+src/\+shared/\+\doxymbox{\hyperlink{utils_8h}{utils.\+h}}\end{DoxyCompactItemize}

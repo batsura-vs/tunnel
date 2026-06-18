@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ioexception_0',['IOException',['../classIOException.html#adebe91abf8c2016c7c6f83eef943a87a',1,'IOException']]]
+  ['clientparams_0',['ClientParams',['../structClientParams.html#aa26e4e02050529c8da58b54b95603f62',1,'ClientParams']]]
 ];

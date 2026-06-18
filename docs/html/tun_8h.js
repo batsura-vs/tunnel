@@ -1,4 +1,4 @@
 var tun_8h =
 [
-    [ "tun_alloc", "tun_8h.html#acb9818c86626590a136db068e1504015", null ]
+    [ "tun_alloc", "tun_8h.html#a8b2855e40898a58291627874c2b7b28e", null ]
 ];

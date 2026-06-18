@@ -1,0 +1,181 @@
+\doxysection{src/\+shared/\+io.cpp File Reference}
+\hypertarget{io_8cpp}{}\label{io_8cpp}\index{src/shared/io.cpp@{src/shared/io.cpp}}
+{\ttfamily \+\#include "{}io.\+h"{}}\newline
+{\ttfamily \+\#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \+\#include $<$netinet/\+in.\+h$>$}\newline
+{\ttfamily \+\#include $<$sys/\+types.\+h$>$}\newline
+{\ttfamily \+\#include $<$unistd.\+h$>$}\newline
+{\ttfamily \+\#include $<$array$>$}\newline
+{\ttfamily \+\#include $<$boost/\+asio.\+hpp$>$}\newline
+{\ttfamily \+\#include $<$boost/\+asio/\+buffer.\+hpp$>$}\newline
+{\ttfamily \+\#include $<$boost/\+asio/\+impl/\+write.\+hpp$>$}\newline
+{\ttfamily \+\#include $<$boost/\+asio/\+io\+\_\+context.\+hpp$>$}\newline
+{\ttfamily \+\#include $<$boost/\+asio/\+ip/\+tcp.\+hpp$>$}\newline
+{\ttfamily \+\#include $<$boost/\+asio/\+posix/\+stream\+\_\+descriptor.\+hpp$>$}\newline
+{\ttfamily \+\#include $<$boost/\+asio/\+read.\+hpp$>$}\newline
+{\ttfamily \+\#include $<$boost/\+asio/\+write.\+hpp$>$}\newline
+{\ttfamily \+\#include $<$boost/\+exception/\+to\+\_\+string.\+hpp$>$}\newline
+{\ttfamily \+\#include $<$boost/\+system/\+detail/\+error\+\_\+code.\+hpp$>$}\newline
+{\ttfamily \+\#include $<$cstddef$>$}\newline
+{\ttfamily \+\#include $<$cstdint$>$}\newline
+{\ttfamily \+\#include $<$cstring$>$}\newline
+{\ttfamily \+\#include $<$iostream$>$}\newline
+{\ttfamily \+\#include $<$memory$>$}\newline
+{\ttfamily \+\#include $<$ostream$>$}\newline
+{\ttfamily \+\#include $<$string$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{structPacket}{Packet}}
+\begin{DoxyCompactList}\small\item\em Сетевой пакет с заголовком размера. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \doxymbox{\hyperlink{namespaceConstants}{Constants}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std::\+array$<$ unsigned char, 4 $>$ \doxymbox{\hyperlink{io_8cpp_ab2a5f27ab0a9bacb3a37a2eee8a076cf}{header\+\_\+to\+\_\+array}} (uint32\+\_\+t number)
+\item 
+std::\+uint32\+\_\+t \doxymbox{\hyperlink{io_8cpp_a63822c52a29dfd3ef04a7c1f8f2b828f}{header\+\_\+from\+\_\+array}} (std::\+array$<$ unsigned char, 4 $>$ buf)
+\begin{DoxyCompactList}\small\item\em Декодирует 32-\/битное число из сетевого порядка байтов. \end{DoxyCompactList}\item 
+std::\+string \doxymbox{\hyperlink{io_8cpp_ad829e69a3607cb6fc54264386457c060}{parse\+\_\+ip\+\_\+v4}} (unsigned char \texorpdfstring{$\ast$}{*}start)
+\begin{DoxyCompactList}\small\item\em Преобразует четыре байта в строку IPv4-\/адреса. \end{DoxyCompactList}\item 
+std::\+string \doxymbox{\hyperlink{io_8cpp_ad678616778fe4650709fff2f2a9e73aa}{parse\+\_\+ip\+\_\+v6}} (unsigned char \texorpdfstring{$\ast$}{*}start)
+\begin{DoxyCompactList}\small\item\em Преобразует шестнадцать байтов в строку IPv6-\/адреса. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{io_8cpp_a2b3601adac8d8e34311e0d60f358c40e}{log\+\_\+packet}} (std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{structPacket}{Packet}} $>$ packet)
+\begin{DoxyCompactList}\small\item\em Выводит в стандартный поток информацию о маршруте пакета. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{io_8cpp_a8a166e8fb5575f48c1bab8d6ee70d733}{bind\+\_\+o}} (boost::\+asio::\+ip::\+tcp::\+socket \&socket, boost::\+asio::\+posix::\+stream\+\_\+descriptor \&tun\+\_\+stream)
+\begin{DoxyCompactList}\small\item\em Запускает асинхронную передачу пакетов из TUN-\/интерфейса в TCP-\/сокет. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{io_8cpp_a4b46fcc08aa4ef79101cc5245b01bf4d}{bind\+\_\+i}} (boost::\+asio::\+ip::\+tcp::\+socket \&socket, boost::\+asio::\+posix::\+stream\+\_\+descriptor \&tun\+\_\+stream)
+\begin{DoxyCompactList}\small\item\em Запускает асинхронную передачу пакетов из TCP-\/сокета в TUN-\/интерфейс. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+constexpr uint32\+\_\+t \doxymbox{\hyperlink{namespaceConstants_ab7d03273bcb68469bca467c64fecf103}{Constants::\+buffer\+\_\+size}} = 2048
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{io_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{io_8cpp_a4b46fcc08aa4ef79101cc5245b01bf4d}\index{io.cpp@{io.cpp}!bind\_i@{bind\_i}}
+\index{bind\_i@{bind\_i}!io.cpp@{io.cpp}}
+\doxysubsubsection{\texorpdfstring{bind\_i()}{bind\_i()}}
+{\footnotesize\ttfamily \label{io_8cpp_a4b46fcc08aa4ef79101cc5245b01bf4d} 
+void bind\+\_\+i (\begin{DoxyParamCaption}\item[{boost::\+asio::\+ip::\+tcp::\+socket \&}]{socket}{, }\item[{boost::\+asio::\+posix::\+stream\+\_\+descriptor \&}]{tun\+\_\+stream}{}\end{DoxyParamCaption})}
+
+
+
+Запускает асинхронную передачу пакетов из TCP-\/сокета в TUN-\/интерфейс. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em socket} & TCP-\/сокет, из которого принимаются данные пакетов. \\
+\hline
+{\em tun\+\_\+stream} & Потоковый дескриптор, связанный с TUN-\/интерфейсом. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \doxylink{classIOException}{IOException}} & Если чтение из сокета, проверка размера пакета или запись в TUN завершается ошибкой. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{io_8cpp_a8a166e8fb5575f48c1bab8d6ee70d733}\index{io.cpp@{io.cpp}!bind\_o@{bind\_o}}
+\index{bind\_o@{bind\_o}!io.cpp@{io.cpp}}
+\doxysubsubsection{\texorpdfstring{bind\_o()}{bind\_o()}}
+{\footnotesize\ttfamily \label{io_8cpp_a8a166e8fb5575f48c1bab8d6ee70d733} 
+void bind\+\_\+o (\begin{DoxyParamCaption}\item[{boost::\+asio::\+ip::\+tcp::\+socket \&}]{socket}{, }\item[{boost::\+asio::\+posix::\+stream\+\_\+descriptor \&}]{tun\+\_\+stream}{}\end{DoxyParamCaption})}
+
+
+
+Запускает асинхронную передачу пакетов из TUN-\/интерфейса в TCP-\/сокет. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em socket} & TCP-\/сокет, в который отправляются данные пакетов. \\
+\hline
+{\em tun\+\_\+stream} & Потоковый дескриптор, связанный с TUN-\/интерфейсом. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \doxylink{classIOException}{IOException}} & Если чтение из TUN или запись в сокет завершается ошибкой. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{io_8cpp_a63822c52a29dfd3ef04a7c1f8f2b828f}\index{io.cpp@{io.cpp}!header\_from\_array@{header\_from\_array}}
+\index{header\_from\_array@{header\_from\_array}!io.cpp@{io.cpp}}
+\doxysubsubsection{\texorpdfstring{header\_from\_array()}{header\_from\_array()}}
+{\footnotesize\ttfamily \label{io_8cpp_a63822c52a29dfd3ef04a7c1f8f2b828f} 
+std::\+uint32\+\_\+t header\+\_\+from\+\_\+array (\begin{DoxyParamCaption}\item[{std::\+array$<$ unsigned char, 4 $>$}]{buf}{}\end{DoxyParamCaption})}
+
+
+
+Декодирует 32-\/битное число из сетевого порядка байтов. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Массив из четырех байтов в порядке от старшего к младшему. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Число, восстановленное из заголовка пакета. 
+\end{DoxyReturn}
+\Hypertarget{io_8cpp_ab2a5f27ab0a9bacb3a37a2eee8a076cf}\index{io.cpp@{io.cpp}!header\_to\_array@{header\_to\_array}}
+\index{header\_to\_array@{header\_to\_array}!io.cpp@{io.cpp}}
+\doxysubsubsection{\texorpdfstring{header\_to\_array()}{header\_to\_array()}}
+{\footnotesize\ttfamily \label{io_8cpp_ab2a5f27ab0a9bacb3a37a2eee8a076cf} 
+std::\+array$<$ unsigned char, 4 $>$ header\+\_\+to\+\_\+array (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{number}{}\end{DoxyParamCaption})}
+
+\Hypertarget{io_8cpp_a2b3601adac8d8e34311e0d60f358c40e}\index{io.cpp@{io.cpp}!log\_packet@{log\_packet}}
+\index{log\_packet@{log\_packet}!io.cpp@{io.cpp}}
+\doxysubsubsection{\texorpdfstring{log\_packet()}{log\_packet()}}
+{\footnotesize\ttfamily \label{io_8cpp_a2b3601adac8d8e34311e0d60f358c40e} 
+void log\+\_\+packet (\begin{DoxyParamCaption}\item[{std::\+shared\+\_\+ptr$<$ \doxymbox{\hyperlink{structPacket}{Packet}} $>$}]{packet}{}\end{DoxyParamCaption})}
+
+
+
+Выводит в стандартный поток информацию о маршруте пакета. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & Указатель на пакет, для которого выводится IP-\/версия и маршрут. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{io_8cpp_ad829e69a3607cb6fc54264386457c060}\index{io.cpp@{io.cpp}!parse\_ip\_v4@{parse\_ip\_v4}}
+\index{parse\_ip\_v4@{parse\_ip\_v4}!io.cpp@{io.cpp}}
+\doxysubsubsection{\texorpdfstring{parse\_ip\_v4()}{parse\_ip\_v4()}}
+{\footnotesize\ttfamily \label{io_8cpp_ad829e69a3607cb6fc54264386457c060} 
+std::\+string parse\+\_\+ip\+\_\+v4 (\begin{DoxyParamCaption}\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{start}{}\end{DoxyParamCaption})}
+
+
+
+Преобразует четыре байта в строку IPv4-\/адреса. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & Указатель на первый из четырёх байтов адреса. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Строковое представление адреса в виде "{}a.\+b.\+c.\+d"{}. 
+\end{DoxyReturn}
+\Hypertarget{io_8cpp_ad678616778fe4650709fff2f2a9e73aa}\index{io.cpp@{io.cpp}!parse\_ip\_v6@{parse\_ip\_v6}}
+\index{parse\_ip\_v6@{parse\_ip\_v6}!io.cpp@{io.cpp}}
+\doxysubsubsection{\texorpdfstring{parse\_ip\_v6()}{parse\_ip\_v6()}}
+{\footnotesize\ttfamily \label{io_8cpp_ad678616778fe4650709fff2f2a9e73aa} 
+std::\+string parse\+\_\+ip\+\_\+v6 (\begin{DoxyParamCaption}\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{start}{}\end{DoxyParamCaption})}
+
+
+
+Преобразует шестнадцать байтов в строку IPv6-\/адреса. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & Указатель на первый из шестнадцати байтов адреса. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Строковое представление адреса либо "{}$<$invalid ipv6$>$"{} при ошибке. 
+\end{DoxyReturn}

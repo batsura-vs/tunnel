@@ -91,29 +91,197 @@ $(function(){initNavTree('structClientParams.html','','structClientParams-member
   <div class="headertitle"><div class="title">ClientParams Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Параметры запуска клиентской части туннеля.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="utils_8h_source.html">utils.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa26e4e02050529c8da58b54b95603f62" id="r_aa26e4e02050529c8da58b54b95603f62"><td class="memItemLeft"><a id="aa26e4e02050529c8da58b54b95603f62" name="aa26e4e02050529c8da58b54b95603f62"></a>
-&#160;</td><td class="memItemRight"><b>ClientParams</b> (int argc, char *argv[])</td></tr>
+<tr class="memitem:aa26e4e02050529c8da58b54b95603f62" id="r_aa26e4e02050529c8da58b54b95603f62"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aa26e4e02050529c8da58b54b95603f62">ClientParams</a> (int argc, char *argv[])</td></tr>
+<tr class="memdesc:aa26e4e02050529c8da58b54b95603f62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Создает параметры клиента из аргументов командной строки.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a91724b8c8b3a7c8d2269031f744a83ec" id="r_a91724b8c8b3a7c8d2269031f744a83ec"><td class="memItemLeft"><a id="a91724b8c8b3a7c8d2269031f744a83ec" name="a91724b8c8b3a7c8d2269031f744a83ec"></a>
-std::string&#160;</td><td class="memItemRight"><b>device</b> {&quot;tun2&quot;}</td></tr>
-<tr class="memitem:afe88f431d6146172ee9764d5221d59c5" id="r_afe88f431d6146172ee9764d5221d59c5"><td class="memItemLeft"><a id="afe88f431d6146172ee9764d5221d59c5" name="afe88f431d6146172ee9764d5221d59c5"></a>
-std::string&#160;</td><td class="memItemRight"><b>ip_network</b> {&quot;10.0.0.2/24&quot;}</td></tr>
-<tr class="memitem:a4192053c7edbb6057653cfe2fdc96fbc" id="r_a4192053c7edbb6057653cfe2fdc96fbc"><td class="memItemLeft"><a id="a4192053c7edbb6057653cfe2fdc96fbc" name="a4192053c7edbb6057653cfe2fdc96fbc"></a>
-std::string&#160;</td><td class="memItemRight"><b>interface</b> {&quot;wlo1&quot;}</td></tr>
-<tr class="memitem:a3d779edd124f5fa5d04a473445ca3179" id="r_a3d779edd124f5fa5d04a473445ca3179"><td class="memItemLeft"><a id="a3d779edd124f5fa5d04a473445ca3179" name="a3d779edd124f5fa5d04a473445ca3179"></a>
-std::string&#160;</td><td class="memItemRight"><b>gateway</b> {}</td></tr>
-<tr class="memitem:ac79c36d7ef701a2b331f029d44336170" id="r_ac79c36d7ef701a2b331f029d44336170"><td class="memItemLeft"><a id="ac79c36d7ef701a2b331f029d44336170" name="ac79c36d7ef701a2b331f029d44336170"></a>
-std::string&#160;</td><td class="memItemRight"><b>server_ip</b> {&quot;127.0.0.1&quot;}</td></tr>
-<tr class="memitem:a40055edd3ec9096537c0a269ad31a8cc" id="r_a40055edd3ec9096537c0a269ad31a8cc"><td class="memItemLeft"><a id="a40055edd3ec9096537c0a269ad31a8cc" name="a40055edd3ec9096537c0a269ad31a8cc"></a>
-int&#160;</td><td class="memItemRight"><b>port</b> {5555}</td></tr>
+<tr class="memitem:a91724b8c8b3a7c8d2269031f744a83ec" id="r_a91724b8c8b3a7c8d2269031f744a83ec"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a91724b8c8b3a7c8d2269031f744a83ec">device</a> {&quot;tun2&quot;}</td></tr>
+<tr class="memdesc:a91724b8c8b3a7c8d2269031f744a83ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Имя создаваемого TUN-интерфейса.  <br /></td></tr>
+<tr class="memitem:a9140f14350cc7360502dee2d7cb87700" id="r_a9140f14350cc7360502dee2d7cb87700"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a9140f14350cc7360502dee2d7cb87700">tun_device</a> {&quot;/dev/net/tun&quot;}</td></tr>
+<tr class="memdesc:a9140f14350cc7360502dee2d7cb87700"><td class="mdescLeft">&#160;</td><td class="mdescRight">Путь к Linux TUN-устройству.  <br /></td></tr>
+<tr class="memitem:afe88f431d6146172ee9764d5221d59c5" id="r_afe88f431d6146172ee9764d5221d59c5"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#afe88f431d6146172ee9764d5221d59c5">ip_network</a> {&quot;10.0.0.2/24&quot;}</td></tr>
+<tr class="memdesc:afe88f431d6146172ee9764d5221d59c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">IP-адрес и маска сети, назначаемые TUN-интерфейсу.  <br /></td></tr>
+<tr class="memitem:a4192053c7edbb6057653cfe2fdc96fbc" id="r_a4192053c7edbb6057653cfe2fdc96fbc"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a4192053c7edbb6057653cfe2fdc96fbc">interface</a> {&quot;wlo1&quot;}</td></tr>
+<tr class="memdesc:a4192053c7edbb6057653cfe2fdc96fbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Имя физического сетевого интерфейса для маршрута к серверу.  <br /></td></tr>
+<tr class="memitem:a3d779edd124f5fa5d04a473445ca3179" id="r_a3d779edd124f5fa5d04a473445ca3179"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a3d779edd124f5fa5d04a473445ca3179">gateway</a> {}</td></tr>
+<tr class="memdesc:a3d779edd124f5fa5d04a473445ca3179"><td class="mdescLeft">&#160;</td><td class="mdescRight">IP-адрес шлюза для маршрута к серверу; пустая строка означает маршрут без шлюза.  <br /></td></tr>
+<tr class="memitem:ac79c36d7ef701a2b331f029d44336170" id="r_ac79c36d7ef701a2b331f029d44336170"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#ac79c36d7ef701a2b331f029d44336170">server_ip</a> {&quot;127.0.0.1&quot;}</td></tr>
+<tr class="memdesc:ac79c36d7ef701a2b331f029d44336170"><td class="mdescLeft">&#160;</td><td class="mdescRight">IP-адрес сервера, к которому подключается клиент.  <br /></td></tr>
+<tr class="memitem:a40055edd3ec9096537c0a269ad31a8cc" id="r_a40055edd3ec9096537c0a269ad31a8cc"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a40055edd3ec9096537c0a269ad31a8cc">port</a> {5555}</td></tr>
+<tr class="memdesc:a40055edd3ec9096537c0a269ad31a8cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">TCP-порт сервера.  <br /></td></tr>
 </table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Параметры запуска клиентской части туннеля. </p>
+<p>Хранит значения, необходимые клиенту для создания TUN-интерфейса, настройки маршрутов и подключения к TCP-серверу. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aa26e4e02050529c8da58b54b95603f62" name="aa26e4e02050529c8da58b54b95603f62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa26e4e02050529c8da58b54b95603f62">&#9670;&#160;</a></span>ClientParams()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ClientParams::ClientParams </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>argc</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>argv</em></span>[]&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Создает параметры клиента из аргументов командной строки. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">argc</td><td>Количество аргументов командной строки. </td></tr>
+    <tr><td class="paramname">argv</td><td>Массив аргументов командной строки. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classParseException.html" title="Тип исключения для ошибок парсинга.">ParseException</a></td><td>Если передан неизвестный аргумент, отсутствует значение аргумента или указан некорректный порт. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a91724b8c8b3a7c8d2269031f744a83ec" name="a91724b8c8b3a7c8d2269031f744a83ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91724b8c8b3a7c8d2269031f744a83ec">&#9670;&#160;</a></span>device</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ClientParams::device {&quot;tun2&quot;}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Имя создаваемого TUN-интерфейса. </p>
+
+</div>
+</div>
+<a id="a3d779edd124f5fa5d04a473445ca3179" name="a3d779edd124f5fa5d04a473445ca3179"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d779edd124f5fa5d04a473445ca3179">&#9670;&#160;</a></span>gateway</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ClientParams::gateway {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>IP-адрес шлюза для маршрута к серверу; пустая строка означает маршрут без шлюза. </p>
+
+</div>
+</div>
+<a id="a4192053c7edbb6057653cfe2fdc96fbc" name="a4192053c7edbb6057653cfe2fdc96fbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4192053c7edbb6057653cfe2fdc96fbc">&#9670;&#160;</a></span>interface</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ClientParams::interface {&quot;wlo1&quot;}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Имя физического сетевого интерфейса для маршрута к серверу. </p>
+
+</div>
+</div>
+<a id="afe88f431d6146172ee9764d5221d59c5" name="afe88f431d6146172ee9764d5221d59c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe88f431d6146172ee9764d5221d59c5">&#9670;&#160;</a></span>ip_network</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ClientParams::ip_network {&quot;10.0.0.2/24&quot;}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>IP-адрес и маска сети, назначаемые TUN-интерфейсу. </p>
+
+</div>
+</div>
+<a id="a40055edd3ec9096537c0a269ad31a8cc" name="a40055edd3ec9096537c0a269ad31a8cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40055edd3ec9096537c0a269ad31a8cc">&#9670;&#160;</a></span>port</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ClientParams::port {5555}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TCP-порт сервера. </p>
+
+</div>
+</div>
+<a id="ac79c36d7ef701a2b331f029d44336170" name="ac79c36d7ef701a2b331f029d44336170"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac79c36d7ef701a2b331f029d44336170">&#9670;&#160;</a></span>server_ip</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ClientParams::server_ip {&quot;127.0.0.1&quot;}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>IP-адрес сервера, к которому подключается клиент. </p>
+
+</div>
+</div>
+<a id="a9140f14350cc7360502dee2d7cb87700" name="a9140f14350cc7360502dee2d7cb87700"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9140f14350cc7360502dee2d7cb87700">&#9670;&#160;</a></span>tun_device</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ClientParams::tun_device {&quot;/dev/net/tun&quot;}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Путь к Linux TUN-устройству. </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>src/client/<b>main.cpp</b></li>
+<li>src/shared/<a class="el" href="utils_8h_source.html">utils.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

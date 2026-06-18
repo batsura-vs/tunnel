@@ -3,8 +3,101 @@
 \doxymbox{\hyperlink{utils_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00002\ }
-\DoxyCodeLine{00007\ }
-\DoxyCodeLine{00014\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{utils_8h_af5dc99d09408bba33e0adc0e7550181b}{run}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *cmd);}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00016\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{utils_8h_af5dc99d09408bba33e0adc0e7550181b}{run}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ cmd);}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00027\ std::string\ \doxymbox{\hyperlink{utils_8h_af2ebbc3c026becb0989802c2833ad7e9}{next\_arg}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}*\ argv[],\ \textcolor{keywordtype}{int}\&\ index,}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ arg);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00036\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{utils_8h_afd3ad4444e518022fa3d2e3feac941e5}{parse\_port}}(\textcolor{keyword}{const}\ std::string\&\ value);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classParseException_a162b338172e869ef6e308b4489abf95b}{ParseException}}\ :\ \textcolor{keyword}{public}\ std::runtime\_error\ \{}
+\DoxyCodeLine{00042\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00047\ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{classParseException_a162b338172e869ef6e308b4489abf95b}{ParseException}}(\textcolor{keyword}{const}\ std::string\&\ message)}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ :\ std::runtime\_error(message)\ \{\};}
+\DoxyCodeLine{00049\ \};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{structServerParams_a40744f642671ff91dc2130b9847a1258}{ServerParams}}\ \{}
+\DoxyCodeLine{00059\ \ \ std::string\ \doxymbox{\hyperlink{structServerParams_a6e52e2f5aca750984c0544340f101c58}{device}}\{\textcolor{stringliteral}{"{}tun1"{}}\};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00062\ \ \ std::string\ \doxymbox{\hyperlink{structServerParams_a1331a5df2eb7f73f304e4116a13402f9}{tun\_device}}\{\textcolor{stringliteral}{"{}/dev/net/tun"{}}\};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00065\ \ \ std::string\ \doxymbox{\hyperlink{structServerParams_a363f86d1dc343e53f6283dc5bb47c27e}{ip\_network}}\{\textcolor{stringliteral}{"{}10.0.0.1/24"{}}\};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00068\ \ \ std::string\ \doxymbox{\hyperlink{structServerParams_ac69256727a395eb5277e9cd6b3f776d4}{interface}}\{\textcolor{stringliteral}{"{}wlo1"{}}\};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00071\ \ \ std::string\ \doxymbox{\hyperlink{structServerParams_a625766f043020aec31acc22cefc967db}{listen\_on}}\{\textcolor{stringliteral}{"{}0.0.0.0"{}}\};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00074\ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{structServerParams_ab7588497c1f0862db097739b4dc95ac8}{port}}\{5555\};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00083\ \ \ \doxymbox{\hyperlink{structServerParams_a40744f642671ff91dc2130b9847a1258}{ServerParams}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}*\ argv[])\ \{\ from\_args(argc,\ argv);\ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00086\ \ \ \textcolor{keywordtype}{void}\ from\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}*\ argv[])\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\{1\};\ i\ <\ argc;\ i++)\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ std::string\ arg\{argv[i]\};}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (arg\ ==\ \textcolor{stringliteral}{"{}-\/-\/tun-\/name"{}})\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{structServerParams_a6e52e2f5aca750984c0544340f101c58}{device}}\ =\ \doxymbox{\hyperlink{utils_8h_af2ebbc3c026becb0989802c2833ad7e9}{next\_arg}}(argc,\ argv,\ i,\ arg);}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (arg\ ==\ \textcolor{stringliteral}{"{}-\/-\/tun-\/device"{}})\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{structServerParams_a1331a5df2eb7f73f304e4116a13402f9}{tun\_device}}\ =\ \doxymbox{\hyperlink{utils_8h_af2ebbc3c026becb0989802c2833ad7e9}{next\_arg}}(argc,\ argv,\ i,\ arg);}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (arg\ ==\ \textcolor{stringliteral}{"{}-\/-\/net"{}})\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{structServerParams_a363f86d1dc343e53f6283dc5bb47c27e}{ip\_network}}\ =\ \doxymbox{\hyperlink{utils_8h_af2ebbc3c026becb0989802c2833ad7e9}{next\_arg}}(argc,\ argv,\ i,\ arg);}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (arg\ ==\ \textcolor{stringliteral}{"{}-\/-\/interface"{}})\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keyword}{interface\ }=\ \doxymbox{\hyperlink{utils_8h_af2ebbc3c026becb0989802c2833ad7e9}{next\_arg}}(argc,\ argv,\ i,\ arg);}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (arg\ ==\ \textcolor{stringliteral}{"{}-\/-\/listen-\/on"{}})\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{structServerParams_a625766f043020aec31acc22cefc967db}{listen\_on}}\ =\ \doxymbox{\hyperlink{utils_8h_af2ebbc3c026becb0989802c2833ad7e9}{next\_arg}}(argc,\ argv,\ i,\ arg);}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (arg\ ==\ \textcolor{stringliteral}{"{}-\/-\/port"{}})\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{structServerParams_ab7588497c1f0862db097739b4dc95ac8}{port}}\ =\ \doxymbox{\hyperlink{utils_8h_afd3ad4444e518022fa3d2e3feac941e5}{parse\_port}}(\doxymbox{\hyperlink{utils_8h_af2ebbc3c026becb0989802c2833ad7e9}{next\_arg}}(argc,\ argv,\ i,\ arg));}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ ParseException(\textcolor{stringliteral}{"{}Unknown\ arg:\ "{}}\ +\ arg);}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \}}
+\DoxyCodeLine{00106\ \};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00114\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{structClientParams_aa26e4e02050529c8da58b54b95603f62}{ClientParams}}\ \{}
+\DoxyCodeLine{00116\ \ \ std::string\ \doxymbox{\hyperlink{structClientParams_a91724b8c8b3a7c8d2269031f744a83ec}{device}}\{\textcolor{stringliteral}{"{}tun2"{}}\};}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00119\ \ \ std::string\ \doxymbox{\hyperlink{structClientParams_a9140f14350cc7360502dee2d7cb87700}{tun\_device}}\{\textcolor{stringliteral}{"{}/dev/net/tun"{}}\};}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00122\ \ \ std::string\ \doxymbox{\hyperlink{structClientParams_afe88f431d6146172ee9764d5221d59c5}{ip\_network}}\{\textcolor{stringliteral}{"{}10.0.0.2/24"{}}\};}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00125\ \ \ std::string\ \doxymbox{\hyperlink{structClientParams_a4192053c7edbb6057653cfe2fdc96fbc}{interface}}\{\textcolor{stringliteral}{"{}wlo1"{}}\};}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00129\ \ \ std::string\ \doxymbox{\hyperlink{structClientParams_a3d779edd124f5fa5d04a473445ca3179}{gateway}}\{\};}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00132\ \ \ std::string\ \doxymbox{\hyperlink{structClientParams_ac79c36d7ef701a2b331f029d44336170}{server\_ip}}\{\textcolor{stringliteral}{"{}127.0.0.1"{}}\};}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00135\ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{structClientParams_a40055edd3ec9096537c0a269ad31a8cc}{port}}\{5555\};}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00144\ \ \ \doxymbox{\hyperlink{structClientParams_aa26e4e02050529c8da58b54b95603f62}{ClientParams}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}*\ argv[])\ \{\ from\_args(argc,\ argv);\ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00147\ \ \ \textcolor{keywordtype}{void}\ from\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}*\ argv[])\ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\{1\};\ i\ <\ argc;\ i++)\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ std::string\ arg\{argv[i]\};}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (arg\ ==\ \textcolor{stringliteral}{"{}-\/-\/tun-\/name"{}})\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{structClientParams_a91724b8c8b3a7c8d2269031f744a83ec}{device}}\ =\ \doxymbox{\hyperlink{utils_8h_af2ebbc3c026becb0989802c2833ad7e9}{next\_arg}}(argc,\ argv,\ i,\ arg);}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (arg\ ==\ \textcolor{stringliteral}{"{}-\/-\/tun-\/device"{}})\ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{structClientParams_a9140f14350cc7360502dee2d7cb87700}{tun\_device}}\ =\ \doxymbox{\hyperlink{utils_8h_af2ebbc3c026becb0989802c2833ad7e9}{next\_arg}}(argc,\ argv,\ i,\ arg);}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (arg\ ==\ \textcolor{stringliteral}{"{}-\/-\/net"{}})\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{structClientParams_afe88f431d6146172ee9764d5221d59c5}{ip\_network}}\ =\ \doxymbox{\hyperlink{utils_8h_af2ebbc3c026becb0989802c2833ad7e9}{next\_arg}}(argc,\ argv,\ i,\ arg);}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (arg\ ==\ \textcolor{stringliteral}{"{}-\/-\/interface"{}})\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keyword}{interface\ }=\ \doxymbox{\hyperlink{utils_8h_af2ebbc3c026becb0989802c2833ad7e9}{next\_arg}}(argc,\ argv,\ i,\ arg);}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (arg\ ==\ \textcolor{stringliteral}{"{}-\/-\/gateway"{}})\ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{structClientParams_a3d779edd124f5fa5d04a473445ca3179}{gateway}}\ =\ \doxymbox{\hyperlink{utils_8h_af2ebbc3c026becb0989802c2833ad7e9}{next\_arg}}(argc,\ argv,\ i,\ arg);}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (arg\ ==\ \textcolor{stringliteral}{"{}-\/-\/server"{}})\ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{structClientParams_ac79c36d7ef701a2b331f029d44336170}{server\_ip}}\ =\ \doxymbox{\hyperlink{utils_8h_af2ebbc3c026becb0989802c2833ad7e9}{next\_arg}}(argc,\ argv,\ i,\ arg);}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (arg\ ==\ \textcolor{stringliteral}{"{}-\/-\/port"{}})\ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{structClientParams_a40055edd3ec9096537c0a269ad31a8cc}{port}}\ =\ \doxymbox{\hyperlink{utils_8h_afd3ad4444e518022fa3d2e3feac941e5}{parse\_port}}(\doxymbox{\hyperlink{utils_8h_af2ebbc3c026becb0989802c2833ad7e9}{next\_arg}}(argc,\ argv,\ i,\ arg));}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ ParseException(\textcolor{stringliteral}{"{}Unknown\ arg:\ "{}}\ +\ arg);}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00167\ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \}}
+\DoxyCodeLine{00169\ \};}
 
 \end{DoxyCode}
