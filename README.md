@@ -54,6 +54,10 @@ sudo ./build/server --interface wlo1 --listen-on 0.0.0.0 --port 5555
 ./build/client --server <IP_СЕРВЕРА> --interface wlo1 --port 5555
 ```
 
+## Замеры скорости и примеры работы
+![Speed Test](assets/speedtest.png)
+![Client Log example](assets/example.png)
+
 ## Важные замечания
 - Проект не удаляет правила iptables, поэтому их рекомендуется удалять вручную или перезагружать систему после использования.
 

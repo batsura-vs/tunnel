@@ -19,6 +19,25 @@
 #include "tun.h"
 #include "utils.h"
 
+void setup_network(ServerParams& config) {
+  run(("ip addr replace " + config.ip_network + " dev " + config.device)
+          .c_str());  // назначаем ip на tun интерфейс
+
+  run(("ip link set " + config.device + " up").c_str());  // поднимаем интерфейс
+
+  run(("iptables -t nat -A POSTROUTING -s " + config.ip_network + " -o " +
+       config.interface + " -j MASQUERADE")
+          .c_str());  // NAT
+
+  run(("iptables -A FORWARD -i " + config.device + " -o " + config.interface +
+       " -j ACCEPT")
+          .c_str());  // разрешаем форвард пакетов наружу
+
+  run(("iptables -A FORWARD -i " + config.interface + " -o " + config.device +
+       " -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT")
+          .c_str());  // обратно пакеты только из открытых соединений
+}
+
 int main(int argc, char* argv[]) {
   try {
     ServerParams config{argc, argv};
@@ -29,22 +48,7 @@ int main(int argc, char* argv[]) {
       throw IOException("tun_alloc failed: " + config.tun_device);
     }
 
-    run(("ip addr replace " + config.ip_network + " dev " + config.device)
-            .c_str());
-
-    run(("ip link set " + config.device + " up").c_str());
-
-    run(("iptables -t nat -A POSTROUTING -s " + config.ip_network + " -o " +
-         config.interface + " -j MASQUERADE")
-            .c_str());
-
-    run(("iptables -A FORWARD -i " + config.device + " -o " + config.interface +
-         " -j ACCEPT")
-            .c_str());
-
-    run(("iptables -A FORWARD -i " + config.interface + " -o " + config.device +
-         " -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT")
-            .c_str());
+    setup_network(config);
 
     boost::asio::io_context io_context;
 

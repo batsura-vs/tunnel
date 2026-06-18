@@ -17,6 +17,22 @@
 #include "tun.h"
 #include "utils.h"
 
+void setup_network(ClientParams& config) {
+  run(("ip addr replace " + config.ip_network + " dev " + config.device)
+          .c_str()); // назначаем ip на tun интерфейс
+  if (config.gateway.empty()) {
+    run(("ip route replace " + config.server_ip + "/32 dev " + config.interface)
+            .c_str()); // до сервера пакеты идут через интерфейс машины
+  } else {
+    run(("ip route replace " + config.server_ip + "/32 via " + config.gateway +
+         " dev " + config.interface)
+            .c_str()); // пакеты через интерфейс машины и дальше на шлюз
+  }
+  run(("ip link set " + config.device + " up").c_str()); // поднять tun
+  run(("ip route replace 0.0.0.0/1 dev " + config.device).c_str()); // захват трафика
+  run(("ip route replace 128.0.0.0/1 dev " + config.device).c_str()); // захват трафика
+}
+
 int main(int argc, char* argv[]) {
   try {
     ClientParams config{argc, argv};
@@ -28,30 +44,15 @@ int main(int argc, char* argv[]) {
     }
     std::cout << "tun allocated" << std::endl;
 
-    run(("ip addr replace " + config.ip_network + " dev " + config.device)
-            .c_str());
-    if (config.gateway.empty()) {
-      run(("ip route replace " + config.server_ip + "/32 dev " +
-           config.interface)
-              .c_str());
-    } else {
-      run(("ip route replace " + config.server_ip + "/32 via " +
-           config.gateway + " dev " + config.interface)
-              .c_str());
-    }
-    run(("ip link set " + config.device + " up").c_str());
-    run(("ip route replace 0.0.0.0/1 dev " + config.device).c_str());
-    run(("ip route replace 128.0.0.0/1 dev " + config.device).c_str());
+    setup_network(config);
 
     boost::asio::io_context io_context;
 
-    using boost::asio::ip::tcp;
-
-    tcp::resolver resolver(io_context);
+    boost::asio::ip::tcp::resolver resolver(io_context);
     auto endpoints =
         resolver.resolve(config.server_ip, std::to_string(config.port));
 
-    tcp::socket socket(io_context);
+    boost::asio::ip::tcp::socket socket(io_context);
     boost::asio::connect(socket, endpoints);
 
     std::cout << "connected to server\n";
