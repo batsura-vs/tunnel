@@ -49,8 +49,7 @@ std::uint32_t header_from_array(std::array<unsigned char, 4> buf) {
  * Используется при обмене данными между TUN-интерфейсом и TCP-сокетом.
  */
 struct Packet {
-  /** @brief Четырёхбайтовый заголовок с размером payload в сетевом порядке
-   * байтов. */
+  /** @brief Четырёхбайтовый заголовок с размером payload */
   std::array<unsigned char, 4> header{};
 
   /** @brief Буфер с полезной нагрузкой пакета (IP-пакет из TUN). */
